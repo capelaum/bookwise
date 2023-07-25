@@ -14,7 +14,7 @@ const nunito = Nunito_Sans({
 })
 
 export const metadata: Metadata = {
-  title: 'Sign in | BookWise',
+  title: 'BookWise',
   description:
     'BookWise, o lugar ideal para você avaliar os melhores livros e compartilhar suas opiniões sobre eles.'
 }

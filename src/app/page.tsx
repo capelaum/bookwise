@@ -1,11 +1,13 @@
-'use client'
-
+import { Metadata } from 'next'
 import Image from 'next/image'
 
-import { SignInButton } from '@/components/Page-Signin/SignIn-Button'
-import { RocketLaunch } from 'phosphor-react'
+import { ButtonsContainer } from '@/components/Page-Signin/Buttons-Container'
 
-import { GithubIcon, GoogleIcon, Logo } from '@/assets'
+import { Logo } from '@/assets'
+
+export const metadata: Metadata = {
+  title: 'Sign in | BookWise'
+}
 
 export default function Home() {
   return (
@@ -15,37 +17,7 @@ export default function Home() {
           <Image src={Logo} alt="BookWise Logo" />
         </div>
 
-        <div className="w-full mt-10 md:mt-0 flex flex-col items-center gap-10 ">
-          <header className="w-full sm:w-[372px] flex flex-col gap-1 ">
-            <h1 className="font-bold text-2xl">Boas vindas!</h1>
-            <h2 className="text-md leading-tall">
-              Faça seu login ou acesse como visitante.
-            </h2>
-          </header>
-
-          <div className="flex flex-col gap-4 w-full sm:w-[372px]">
-            <SignInButton
-              icon={<Image src={GoogleIcon} alt="Google Icon" />}
-              text="Entrar com Google"
-            />
-
-            <SignInButton
-              icon={<Image src={GithubIcon} alt="Github Icon" />}
-              text="Entrar com Github"
-            />
-
-            <SignInButton
-              icon={
-                <RocketLaunch
-                  size={32}
-                  weight="regular"
-                  color="var(--purple-100)"
-                />
-              }
-              text="Entrar como visitante"
-            />
-          </div>
-        </div>
+        <ButtonsContainer />
       </div>
     </main>
   )

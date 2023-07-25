@@ -7,11 +7,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prepare": "husky install",
     "commit": "git-cz"
   },
+  "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
+  },
   "dependencies": {
-    "@types/node": "20.4.4",
+    "@prisma/client": "^5.0.0",
     "@types/react": "18.2.16",
     "@types/react-dom": "18.2.7",
     "autoprefixer": "10.4.14",
@@ -30,6 +32,7 @@
   "devDependencies": {
     "@commitlint/cli": "^17.6.7",
     "@commitlint/config-conventional": "^17.6.7",
+    "@types/node": "^20.4.4",
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
     "eslint-config-prettier": "^8.8.0",
@@ -37,7 +40,9 @@
     "eslint-plugin-prettier": "^5.0.0",
     "husky": "^8.0.3",
     "prettier": "^3.0.0",
-    "prettier-plugin-tailwindcss": "^0.4.1"
+    "prettier-plugin-tailwindcss": "^0.4.1",
+    "prisma": "^5.0.0",
+    "ts-node": "^10.9.1"
   },
   "config": {
     "commitizen": {

@@ -44,10 +44,12 @@
             "/@next/"
           ],
           [
+            "module",
             "/^@components/"
           ],
           [
-            "/^@styles/"
+            "/^@/styles/",
+            "/^@/assets/"
           ],
           [
             "parent",

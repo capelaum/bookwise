@@ -1,13 +1,20 @@
 import type { Metadata } from 'next'
-import { Nunito } from 'next/font/google'
+import { Nunito_Sans } from 'next/font/google'
 import { ReactNode } from 'react'
+
+import { Favicon } from '@/components/Head/Favicon/Favicon'
 
 import '@/styles/globals.css'
 
-const inter = Nunito({ subsets: ['latin'], weight: ['400', '700'] })
+const nunito = Nunito_Sans({
+  subsets: ['latin'],
+  variable: '--font-nunito',
+  display: 'swap',
+  preload: false
+})
 
 export const metadata: Metadata = {
-  title: 'Login | Bookwise',
+  title: 'Sign in | BookWise',
   description:
     'BookWise, o lugar ideal para você avaliar os melhores livros e compartilhar suas opiniões sobre eles.'
 }
@@ -15,7 +22,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="pt-BR">
-      <body className={inter.className}>{children}</body>
+      <head>
+        <Favicon />
+      </head>
+      <body className={nunito.className}>{children}</body>
     </html>
   )
 }

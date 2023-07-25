@@ -3,15 +3,36 @@
 @tailwind utilities;
 
 :root {
+  --gray-800: hsl(217 22% 7%);
+  --gray-700: hsl(227 27% 13%);
+  --gray-600: hsl(227 33% 22%);
+  --gray-500: hsl(227 41% 32%);
+  --gray-400: hsl(227 17% 62%);
+  --gray-300: hsl(227 26% 86%);
+  --gray-200: hsl(227 33% 93%);
+  --gray-100: hsl(227 32% 98%);
 
+  --purple-200: hsl(241 50% 32%);
+  --purple-100: hsl(241 54% 68%);
+
+  --green-300: hsl(194 72% 14%);
+  --green-200: hsl(191 48% 28%);
+  --green-100: hsl(187 47% 53%);
+
+  --gradient-horizontal: linear-gradient(to left, hsl(176 47% 66%), hsl(241 83% 77%));
+  --gradient-vertical: linear-gradient(to bottom, hsl(176 47% 66%), hsl(241 83% 77%));
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-
-  }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  font-family: 'Nunito', sans-serif;
+  font-family: var(--font-nunito), sans-serif;
+  background-color: var(--gray-800);
+  color: var(--gray-100);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }

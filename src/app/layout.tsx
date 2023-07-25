@@ -4,7 +4,7 @@ import { ReactNode } from 'react'
 
 import '@/styles/globals.css'
 
-const inter = Nunito({ subsets: ['latin'] })
+const inter = Nunito({ subsets: ['latin'], weight: ['400', '700'] })
 
 export const metadata: Metadata = {
   title: 'Login | Bookwise',

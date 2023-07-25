@@ -1,10 +1,10 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Nunito } from 'next/font/google'
 import { ReactNode } from 'react'
 
 import '@/styles/globals.css'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Nunito({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Login | Bookwise',
@@ -13,11 +13,6 @@ export const metadata: Metadata = {
 }
 
 export default function RootLayout({ children }: { children: ReactNode }) {
-  const obj = {
-    something: 'something',
-    other: 'other'
-  }
-
   return (
     <html lang="pt-BR">
       <body className={inter.className}>{children}</body>

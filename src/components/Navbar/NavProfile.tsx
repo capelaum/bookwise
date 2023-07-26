@@ -6,10 +6,9 @@ import Link from 'next/link'
 import { useState } from 'react'
 
 import { useToast } from '@/hooks/use-toast'
-import { getUserNameInitials } from '@/lib/utils'
 import { SignIn, SignOut } from 'phosphor-react'
 
-import { Avatar, AvatarFallback, AvatarImage } from '../ui/Avatar'
+import { AvatarProfile } from '../AvatarProfile'
 import { Text } from '../ui/Text'
 
 interface NavProfileProps {
@@ -51,18 +50,11 @@ export function NavProfile({ session }: NavProfileProps) {
         disabled={isLoading}
         onClick={handleLogout}
       >
-        <Avatar size="sm">
-          {session.user.avatar_url ? (
-            <AvatarImage
-              src={session.user.avatar_url}
-              alt={session.user.name}
-            />
-          ) : (
-            <AvatarFallback size="sm">
-              {getUserNameInitials(session.user.name)}
-            </AvatarFallback>
-          )}
-        </Avatar>
+        <AvatarProfile
+          size="sm"
+          name={session?.user.name ?? ''}
+          avatar_url={session?.user.avatar_url ?? null}
+        />
 
         <Text weight="bold" size="sm" asChild>
           <span className="max-w-[100px] overflow-hidden text-ellipsis whitespace-nowrap">

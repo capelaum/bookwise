@@ -1,7 +1,5 @@
-'use client'
-
+import { Binoculars } from '@/components/Icons'
 import { PageHeading } from '@/components/PageHeading'
-import { Binoculars } from 'phosphor-react'
 
 export default function Explore() {
   return (

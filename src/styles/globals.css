@@ -2,49 +2,45 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --gray-800: hsl(217 22% 7%);
-  --gray-700: hsl(227 27% 13%);
-  --gray-600: hsl(227 33% 22%);
-  --gray-500: hsl(227 41% 32%);
-  --gray-400: hsl(227 17% 62%);
-  --gray-300: hsl(227 26% 86%);
-  --gray-200: hsl(227 33% 93%);
-  --gray-100: hsl(227 32% 98%);
+@layer base {
+  :root {
+    --gray-800: hsl(217 22% 7%);
+    --gray-700: hsl(227 27% 13%);
+    --gray-600: hsl(227 33% 22%);
+    --gray-500: hsl(227 41% 32%);
+    --gray-400: hsl(227 17% 62%);
+    --gray-300: hsl(227 26% 86%);
+    --gray-200: hsl(227 33% 93%);
+    --gray-100: hsl(227 32% 98%);
 
-  --purple-200: hsl(241 50% 32%);
-  --purple-100: hsl(241 54% 68%);
+    --purple-200: hsl(241 50% 32%);
+    --purple-100: hsl(241 54% 68%);
 
-  --green-300: hsl(194 72% 14%);
-  --green-200: hsl(191 48% 28%);
-  --green-100: hsl(187 47% 53%);
+    --green-300: hsl(194 72% 14%);
+    --green-200: hsl(191 48% 28%);
+    --green-100: hsl(187 47% 53%);
 
-  --gradient-horizontal: linear-gradient(
-    to left,
-    hsl(176 47% 66%),
-    hsl(241 83% 77%)
-  );
-  --gradient-vertical: linear-gradient(
-    to bottom,
-    hsl(176 47% 66%),
-    hsl(241 83% 77%)
-  );
+    --green-gradient: hsl(176 47% 66%);
+    --purple-gradient: hsl(241 83% 77%);
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: var(--font-nunito), sans-serif;
+    background-color: var(--gray-800);
+    color: var(--gray-100);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: var(--font-nunito), sans-serif;
-  background-color: var(--gray-800);
-  color: var(--gray-100);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.sign-in-button {
-  @apply flex items-center gap-5 rounded-lg bg-gray-600 px-6 py-5 text-left text-sm font-bold leading-tall text-gray-200 transition-all duration-300 ease-in-out hover:bg-gray-500 sm:text-lg;
+@layer components {
+  .sign-in-button {
+    @apply flex items-center gap-5 rounded-lg bg-gray-600 px-6 py-5 text-left text-sm sm:text-lg font-bold leading-tall text-gray-200 transition-all duration-300 ease-in-out hover:bg-gray-500;
+  }
 }

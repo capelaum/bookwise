@@ -3,7 +3,7 @@ import { HTMLAttributes } from 'react'
 import { Slot } from '@radix-ui/react-slot'
 import { VariantProps, tv } from 'tailwind-variants'
 
-const headingVariants = tv({
+const heading = tv({
   base: 'leading-normal text-gray-100 font-bold',
   variants: {
     size: {
@@ -20,7 +20,7 @@ const headingVariants = tv({
 
 interface HeadingProps
   extends HTMLAttributes<HTMLHeadingElement>,
-    VariantProps<typeof headingVariants> {
+    VariantProps<typeof heading> {
   asChild?: boolean
 }
 
@@ -32,5 +32,5 @@ export function Heading({
 }: HeadingProps) {
   const Comp = asChild ? Slot : 'h1'
 
-  return <Comp className={headingVariants({ size, className })} {...props} />
+  return <Comp className={heading({ size, className })} {...props} />
 }

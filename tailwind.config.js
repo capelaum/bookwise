@@ -32,16 +32,14 @@ module.exports = {
         },
         purple: {
           100: 'var(--purple-100)',
-          200: 'var(--purple-200)'
+          200: 'var(--purple-200)',
+          gradient: 'var(--purple-gradient)'
         },
         green: {
           100: 'var(--green-100)',
           200: 'var(--green-200)',
-          300: 'var(--green-300)'
-        },
-        gradient: {
-          horizontal: 'var(--gradient-horizontal)',
-          vertical: 'var(--gradient-vertical)'
+          300: 'var(--green-300)',
+          gradient: 'var(--green-gradient)'
         }
       },
       lineHeight: {

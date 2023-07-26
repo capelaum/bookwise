@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { Nunito_Sans } from 'next/font/google'
 import { ReactNode } from 'react'
 
-import { Favicon } from '@/components/Head/Favicon/Favicon'
+import { Favicon } from '@/components/Head/Favicon'
 
 import '@/styles/globals.css'
 

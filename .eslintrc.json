@@ -27,7 +27,10 @@
         "trailingComma": "none",
         "arrowParens": "always",
         "semi": false,
-        "endOfLine": "auto"
+        "endOfLine": "auto",
+        "plugins": [
+          "prettier-plugin-tailwindcss"
+        ]
       },
       {
         "usePrettierrc": false

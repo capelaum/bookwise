@@ -4,7 +4,7 @@ import { Slot } from '@radix-ui/react-slot'
 import { VariantProps, tv } from 'tailwind-variants'
 
 const heading = tv({
-  base: 'leading-normal text-gray-100 font-bold',
+  base: 'leading-normal text-gray-100 font-semibold',
   variants: {
     size: {
       xs: 'text-base',

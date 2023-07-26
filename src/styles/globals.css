@@ -43,4 +43,8 @@
   .sign-in-button {
     @apply flex items-center gap-5 rounded-lg bg-gray-600 px-6 py-5 text-left text-sm sm:text-lg font-bold leading-tall text-gray-200 transition-all duration-300 ease-in-out hover:bg-gray-500;
   }
+
+  .navbar-profile {
+    @apply mt-auto flex items-center gap-3 rounded-md p-2 transition-all duration-200 ease-in-out hover:bg-white/10;
+  }
 }

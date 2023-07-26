@@ -85,21 +85,6 @@ export function ButtonsContainer() {
         Entrar com Github
       </button>
 
-      <button
-        className="sign-in-button"
-        title="Tast"
-        onClick={() => {
-          toast({
-            title: 'TESTE',
-            description: 'TESTE'
-          })
-        }}
-        disabled={isLoading}
-      >
-        <Image src={GithubIcon} alt="Github Icon" />
-        Toast
-      </button>
-
       <Link href="/home" className="sign-in-button">
         <RocketLaunch size={32} weight="regular" color="var(--purple-100)" />
         <span>Entrar como visitante</span>

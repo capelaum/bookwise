@@ -8,12 +8,6 @@ import { db } from './db'
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(db),
 
-  pages: {
-    signIn: '/',
-    signOut: '/home',
-    error: '/'
-  },
-
   callbacks: {
     session({ session, user }) {
       if (session.user) {

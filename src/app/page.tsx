@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import Image from 'next/image'
 
-import { ButtonsContainer } from '@/components/Page-Signin/Buttons-Container'
+import { ButtonsContainer } from '@/components/PageSignin/ButtonsContainer'
 import { Heading } from '@/components/ui/Heading'
 import { Text } from '@/components/ui/Text'
 

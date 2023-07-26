@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 
 import { RocketLaunch } from 'phosphor-react'
 
@@ -21,12 +22,10 @@ export function ButtonsContainer() {
         text="Entrar com Github"
       />
 
-      <Button
-        icon={
-          <RocketLaunch size={32} weight="regular" color="var(--purple-100)" />
-        }
-        text="Entrar como visitante"
-      />
+      <Link href="/home" className="sign-in-button">
+        <RocketLaunch size={32} weight="regular" color="var(--purple-100)" />
+        <span>Entrar como visitante</span>
+      </Link>
     </div>
   )
 }

@@ -20,3 +20,13 @@ export const getUserNameInitials = (name: string) => {
     nameArray[0].charAt(0) + nameArray[nameArray.length - 1].charAt(0)
   ).toUpperCase()
 }
+
+export const getUserFirstName = (name: string) => {
+  const nameArray = name.split(' ')
+
+  if (nameArray.length === 0) {
+    return ''
+  }
+
+  return nameArray[0]
+}

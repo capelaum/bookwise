@@ -3,7 +3,7 @@ import { Nunito_Sans } from 'next/font/google'
 import { ReactNode } from 'react'
 
 import { Favicon } from '@/components/Head/Favicon'
-
+import { Toaster } from '@/components/ui/Toaster'
 import '@/styles/globals.css'
 
 const nunito = Nunito_Sans({
@@ -25,7 +25,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <head>
         <Favicon />
       </head>
-      <body className={nunito.className}>{children}</body>
+      <body className={nunito.className}>
+        {children}
+        <Toaster />
+      </body>
     </html>
   )
 }

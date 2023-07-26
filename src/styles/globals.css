@@ -45,6 +45,6 @@
   }
 
   .navbar-profile {
-    @apply mt-auto flex items-center gap-3 rounded-md p-2 transition-all duration-200 ease-in-out hover:bg-white/10;
+    @apply mt-auto flex items-center justify-center gap-3 rounded-md p-2 transition-all duration-200 ease-in-out hover:bg-white/10;
   }
 }

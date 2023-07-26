@@ -1,7 +1,6 @@
-import { getServerSession } from 'next-auth'
 import Image from 'next/image'
 
-import { authOptions } from '@/lib/auth'
+import { getAuthSession } from '@/lib/auth'
 
 import { Logo } from '@/assets'
 
@@ -9,7 +8,7 @@ import { NavLinks } from './NavLinks'
 import { NavProfile } from './NavProfile'
 
 export async function Navbar() {
-  const session = await getServerSession(authOptions)
+  const session = await getAuthSession()
   console.log('💥 ~ session:', session)
 
   return (

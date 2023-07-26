@@ -1,9 +1,11 @@
 import { Metadata } from 'next'
 import Image from 'next/image'
+import { redirect } from 'next/navigation'
 
 import { ButtonsContainer } from '@/components/PageSignin/ButtonsContainer'
 import { Heading } from '@/components/ui/Heading'
 import { Text } from '@/components/ui/Text'
+import { getAuthSession } from '@/lib/auth'
 
 import { Logo } from '@/assets'
 
@@ -11,7 +13,13 @@ export const metadata: Metadata = {
   title: 'Sign in | BookWise'
 }
 
-export default function SignIn() {
+export default async function SignIn() {
+  const session = await getAuthSession()
+
+  if (session && session.user) {
+    redirect('/home')
+  }
+
   return (
     <main className="flex min-h-screen flex-col items-center overflow-hidden p-5">
       <div className="flex h-full min-h-[calc(100vh-40px)] w-full max-w-7xl flex-col items-center justify-start rounded-lg bg-gray-700 p-5 md:min-h-0 md:flex-row md:bg-gray-800 md:p-0">

@@ -8,7 +8,7 @@ import { Text } from '@/components/ui/Text'
 
 export default async function Home() {
   return (
-    <section className="mt-16 flex w-full flex-col">
+    <section className="ml-[348px] mt-16 flex w-full flex-col">
       <PageHeading
         title="Início"
         icon={<ChartLineUp size={32} color="var(--green-100)" />}

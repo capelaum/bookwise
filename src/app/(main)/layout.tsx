@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function MainLayout({ children }: { children: ReactNode }) {
   return (
-    <main className="mx-auto flex h-screen max-w-[1400px] justify-start border border-red-500 p-5">
+    <main className="mx-auto flex h-screen max-w-[1400px] justify-start p-5">
       <Navbar />
 
       {children}

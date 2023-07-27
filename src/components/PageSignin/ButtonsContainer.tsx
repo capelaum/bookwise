@@ -15,11 +15,11 @@ export function ButtonsContainer() {
 
   const { toast } = useToast()
 
-  const handleLoginWithGoogle = async () => {
+  const handleLogin = async (type: 'github' | 'google') => {
     setIsLoading(true)
 
     try {
-      await signIn('google', {
+      await signIn(type, {
         callbackUrl: '/home'
       })
 
@@ -31,31 +31,7 @@ export function ButtonsContainer() {
       console.log('💥 ~ error:', error)
       toast({
         title: 'Error',
-        description: 'Ocorreu um erro ao fazer login com o Google',
-        variant: 'destructive'
-      })
-    } finally {
-      setIsLoading(false)
-    }
-  }
-
-  const handleLoginWithGithub = async () => {
-    setIsLoading(true)
-
-    try {
-      await signIn('github', {
-        callbackUrl: '/home'
-      })
-
-      toast({
-        title: 'Login realizado com sucesso!',
-        description: 'Seja bem-vindo ao BookWise'
-      })
-    } catch (error) {
-      console.log('💥 ~ error:', error)
-      toast({
-        title: 'Erro 😕',
-        description: 'Ocorreu um erro ao fazer login com o Github',
+        description: `Ocorreu um erro ao fazer login com o ${type}`,
         variant: 'destructive'
       })
     } finally {
@@ -68,7 +44,7 @@ export function ButtonsContainer() {
       <button
         className="sign-in-button"
         title="Entrar com Google"
-        onClick={handleLoginWithGoogle}
+        onClick={() => handleLogin('google')}
         disabled={isLoading}
       >
         <Image src={GoogleIcon} alt="Google Icon" />
@@ -78,7 +54,7 @@ export function ButtonsContainer() {
       <button
         className="sign-in-button"
         title="Entrar com Github"
-        onClick={handleLoginWithGithub}
+        onClick={() => handleLogin('github')}
         disabled={isLoading}
       >
         <Image src={GithubIcon} alt="Github Icon" />

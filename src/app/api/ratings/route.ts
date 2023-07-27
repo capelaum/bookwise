@@ -14,6 +14,8 @@ export async function GET(req: Request) {
       }
     })
 
+    // await new Promise((resolve) => setTimeout(resolve, 3000))
+
     return NextResponse.json(ratings)
   } catch (error) {
     return NextResponse.json({

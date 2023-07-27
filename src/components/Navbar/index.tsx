@@ -11,8 +11,8 @@ export async function Navbar() {
   const session = await getAuthSession()
 
   return (
-    <nav className="fixed z-10 flex h-[calc(100vh-40px)] w-[232px] min-w-[232px] flex-col items-center rounded-xl bg-gray-700 px-12 pb-6 pt-10">
-      <Image src={Logo} alt="BookWise Logo" />
+    <nav className="fixed left-5 right-5 top-2 z-10 flex items-center justify-center rounded-lg bg-gray-600 px-3 py-2 md:inset-auto md:h-[calc(100vh-40px)] md:w-[232px] md:min-w-[232px] md:translate-x-0 md:flex-col md:rounded-xl md:bg-gray-700 md:px-12 md:pb-6 md:pt-10">
+      <Image src={Logo} alt="BookWise Logo" className="hidden md:block" />
 
       <NavLinks session={session} />
 

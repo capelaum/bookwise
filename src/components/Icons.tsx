@@ -1,3 +1,9 @@
 'use client'
 
-export { Binoculars, ChartLineUp, RocketLaunch, Star } from 'phosphor-react'
+export {
+  Binoculars,
+  CaretRight,
+  ChartLineUp,
+  RocketLaunch,
+  Star
+} from 'phosphor-react'

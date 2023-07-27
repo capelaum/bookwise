@@ -54,23 +54,26 @@ export function NavProfile({ session }: NavProfileProps) {
           size="sm"
           name={session?.user.name ?? ''}
           avatar_url={session?.user.avatar_url ?? null}
+          className="hidden md:block"
         />
 
         <Text weight="bold" size="sm" asChild>
-          <span className="max-w-[100px] overflow-hidden text-ellipsis whitespace-nowrap">
+          <span className="hidden max-w-[100px] overflow-hidden text-ellipsis whitespace-nowrap md:block">
             {session.user.name}
           </span>
         </Text>
 
-        <SignOut size={24} color="#F75A68" className="min-w-fit " />
+        <SignOut size={24} color="#F75A68" className="min-w-fit" />
       </button>
     )
   }
 
   return (
     <Link href="/" className="navbar-profile">
-      <Text weight="bold">Fazer login</Text>
-      <SignIn size={24} color="var(--green-100)" />
+      <Text weight="bold" className="hidden md:block">
+        Fazer login
+      </Text>
+      <SignIn size={24} color="hsl(var(--green-100))" />
     </Link>
   )
 }

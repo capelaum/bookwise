@@ -30,15 +30,18 @@ export async function CardRatings() {
   return (
     <div className="flex flex-col gap-3">
       {ratings.map((rating) => (
-        <div className="h-72 w-full rounded-lg bg-gray-700 p-6" key={rating.id}>
-          <div className="mb-8 flex justify-between">
-            <div className="flex gap-4">
+        <div
+          className="h-full w-full rounded-lg border-2 border-gray-700 bg-gray-700 p-6 hover:border-gray-600 md:h-72"
+          key={rating.id}
+        >
+          <div className="mb-3 flex flex-col items-center justify-between gap-6 xs:mb-8 xs:flex-row xs:gap-2">
+            <div className="flex flex-col items-center gap-2 xs:flex-row xs:gap-4">
               <AvatarProfile
                 name={rating.user.name}
                 avatar_url={rating.user.avatar_url}
               />
 
-              <div className="flex flex-col">
+              <div className="flex flex-col items-center xs:items-start">
                 <Text>{rating.user.name}</Text>
                 <Text size="sm" color="gray400" asChild>
                   <span>Hoje</span>
@@ -49,7 +52,7 @@ export async function CardRatings() {
             <Stars rating={rating.rate} size="sm" />
           </div>
 
-          <div className="flex gap-5">
+          <div className="flex flex-col items-center gap-5 xs:flex-row xs:items-start">
             <Image
               width={108}
               height={152}
@@ -58,16 +61,24 @@ export async function CardRatings() {
               className="h-[152px] w-[108px] rounded-md object-cover"
             />
 
-            <div className="">
-              <Heading size="sm" asChild>
+            <div className="flex w-full flex-col items-center overflow-hidden xs:items-start">
+              <Heading
+                size="xs"
+                asChild
+                className="overflow-hidden text-center xs:text-ellipsis xs:whitespace-nowrap xs:text-left"
+              >
                 <h2>{rating.book.name}</h2>
               </Heading>
 
               <Text size="sm" color="gray400" asChild>
-                <span>{rating.book.author}</span>
+                <span className="mt-2 xs:mt-0">{rating.book.author}</span>
               </Text>
 
-              <Text size="sm" className="mt-5" color="gray300">
+              <Text
+                size="sm"
+                className="mt-5 overflow-hidden text-ellipsis"
+                color="gray300"
+              >
                 {rating.description}
               </Text>
             </div>

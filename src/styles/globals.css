@@ -4,24 +4,24 @@
 
 @layer base {
   :root {
-    --gray-800: hsl(217 22% 7%);
-    --gray-700: hsl(227 27% 13%);
-    --gray-600: hsl(227 33% 22%);
-    --gray-500: hsl(227 41% 32%);
-    --gray-400: hsl(227 17% 62%);
-    --gray-300: hsl(227 26% 86%);
-    --gray-200: hsl(227 33% 93%);
-    --gray-100: hsl(227 32% 98%);
+    --gray-800: 217 22% 7%;
+    --gray-700: 227 27% 13%;
+    --gray-600: 227 33% 22%;
+    --gray-500: 227 41% 32%;
+    --gray-400: 227 17% 62%;
+    --gray-300: 227 26% 86%;
+    --gray-200: 227 33% 93%;
+    --gray-100: 227 32% 98%;
 
-    --purple-200: hsl(241 50% 32%);
-    --purple-100: hsl(241 54% 68%);
+    --purple-200: 241 50% 32%;
+    --purple-100: 241 54% 68%;
 
-    --green-300: hsl(194 72% 14%);
-    --green-200: hsl(191 48% 28%);
-    --green-100: hsl(187 47% 53%);
+    --green-300: 194 72% 14%;
+    --green-200: 191 48% 28%;
+    --green-100: 187 47% 53%;
 
-    --green-gradient: hsl(176 47% 66%);
-    --purple-gradient: hsl(241 83% 77%);
+    --green-gradient: 176 47% 66%;
+    --purple-gradient: 241 83% 77%;
   }
 
   * {
@@ -32,8 +32,8 @@
 
   body {
     font-family: var(--font-nunito), sans-serif;
-    background-color: var(--gray-800);
-    color: var(--gray-100);
+    background-color: hsl(var(--gray-800));
+    color: hsl(var(--gray-100));
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -45,6 +45,6 @@
   }
 
   .navbar-profile {
-    @apply mt-auto flex items-center justify-center gap-3 rounded-md p-2 transition-all duration-200 ease-in-out hover:bg-white/10;
+    @apply ml-6 md:ml-0 mt-auto flex items-center justify-center gap-3 rounded-md p-2 transition-all duration-200 ease-in-out hover:bg-gray-200/5;
   }
 }

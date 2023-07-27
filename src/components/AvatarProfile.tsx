@@ -5,15 +5,17 @@ interface AvatarProfileProps {
   name: string
   avatar_url: string | null
   size?: 'sm' | 'md' | 'lg'
+  className?: string
 }
 
 export function AvatarProfile({
   name,
   avatar_url,
-  size = 'md'
+  size = 'md',
+  className
 }: AvatarProfileProps) {
   return (
-    <Avatar size={size}>
+    <Avatar size={size} className={className}>
       {avatar_url ? (
         <AvatarImage src={avatar_url} alt={name} />
       ) : (

@@ -1,12 +1,14 @@
 'use client'
 
 import { type Session } from 'next-auth'
-import Link from 'next/link'
+import Link, { LinkProps } from 'next/link'
 import { usePathname } from 'next/navigation'
 import { ReactNode, useMemo } from 'react'
 
 import { Binoculars, ChartLineUp, User } from 'phosphor-react'
-import { tv } from 'tailwind-variants'
+import { VariantProps, tv } from 'tailwind-variants'
+
+import { Text } from '../ui/Text'
 
 const NAV_ITEMS = [
   {
@@ -42,7 +44,7 @@ export function NavLinks({ session }: NavLinksProps) {
   }, [session])
 
   return (
-    <div className="mt-16 flex flex-col gap-4">
+    <div className="flex gap-8 md:mt-16 md:flex-col md:gap-4">
       {navItems.map(({ href, label, icon }) => (
         <NavLink key={label} href={href} label={label} icon={icon} />
       ))}
@@ -51,7 +53,7 @@ export function NavLinks({ session }: NavLinksProps) {
 }
 
 const navlink = tv({
-  base: "relative flex items-center gap-3 py-2 hover:text-gray-100 transition-all duration-200 ease-in-out before:absolute before:-left-5 before:content-[''] before:w-1 before:h-6 before:rounded-full before:bg-gradient-to-b before:from-green-gradient before:to-purple-gradient",
+  base: "relative flex items-center gap-3 py-2 hover:text-gray-100 transition-all duration-200 ease-in-out before:absolute before:-bottom-[6px] md:before:-left-5 before:content-[''] md:before:w-1 before:w-full before:h-1 md:before:h-6 before:rounded-full before:bg-gradient-to-b before:from-green-gradient before:to-purple-gradient",
   variants: {
     active: {
       true: 'text-gray-100 font-semibold before:opacity-1',
@@ -60,8 +62,7 @@ const navlink = tv({
   }
 })
 
-interface NavLinkProps {
-  href: string
+interface NavLinkProps extends VariantProps<typeof navlink>, LinkProps {
   label: string
   icon: ReactNode
 }
@@ -77,7 +78,7 @@ export function NavLink({ href, label, icon }: NavLinkProps) {
       className={navlink({ active: href === pathname })}
     >
       {icon}
-      {label}
+      <Text className="hidden md:block">{label}</Text>
     </Link>
   )
 }

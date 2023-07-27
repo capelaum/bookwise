@@ -21,25 +21,25 @@ module.exports = {
     extend: {
       colors: {
         gray: {
-          100: 'var(--gray-100)',
-          200: 'var(--gray-200)',
-          300: 'var(--gray-300)',
-          400: 'var(--gray-400)',
-          500: 'var(--gray-500)',
-          600: 'var(--gray-600)',
-          700: 'var(--gray-700)',
-          800: 'var(--gray-800)'
+          100: 'hsl(var(--gray-100))',
+          200: 'hsl(var(--gray-200))',
+          300: 'hsl(var(--gray-300))',
+          400: 'hsl(var(--gray-400))',
+          500: 'hsl(var(--gray-500))',
+          600: 'hsl(var(--gray-600))',
+          700: 'hsl(var(--gray-700))',
+          800: 'hsl(var(--gray-800))'
         },
         purple: {
-          100: 'var(--purple-100)',
-          200: 'var(--purple-200)',
-          gradient: 'var(--purple-gradient)'
+          100: 'hsl(var(--purple-100))',
+          200: 'hsl(var(--purple-200))',
+          gradient: 'hsl(var(--purple-gradient))'
         },
         green: {
-          100: 'var(--green-100)',
-          200: 'var(--green-200)',
-          300: 'var(--green-300)',
-          gradient: 'var(--green-gradient)'
+          100: 'hsl(var(--green-100))',
+          200: 'hsl(var(--green-200))',
+          300: 'hsl(var(--green-300))',
+          gradient: 'hsl(var(--green-gradient))'
         }
       },
       lineHeight: {

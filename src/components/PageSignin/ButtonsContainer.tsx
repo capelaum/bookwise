@@ -62,7 +62,11 @@ export function ButtonsContainer() {
       </button>
 
       <Link href="/home" className="sign-in-button">
-        <RocketLaunch size={32} weight="regular" color="var(--purple-100)" />
+        <RocketLaunch
+          size={32}
+          weight="regular"
+          color="hsl(var(--purple-100))"
+        />
         <span>Entrar como visitante</span>
       </Link>
     </div>

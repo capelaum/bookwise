@@ -19,7 +19,7 @@ const text = tv({
     },
     weight: {
       normal: 'font-normal',
-      bold: 'font-semibold'
+      bold: 'font-bold'
     }
   },
   defaultVariants: {

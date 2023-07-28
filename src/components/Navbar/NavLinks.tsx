@@ -53,7 +53,7 @@ export function NavLinks({ session }: NavLinksProps) {
 }
 
 const navlink = tv({
-  base: "relative flex items-center gap-3 py-2 hover:text-gray-100 transition-all duration-200 ease-in-out before:absolute before:-bottom-[6px] md:before:bottom-auto md:before:-left-5 before:content-[''] md:before:w-1 before:w-full before:h-1 md:before:h-6 before:rounded-full before:bg-gradient-to-b before:from-green-gradient before:to-purple-gradient",
+  base: "relative flex items-center gap-3 py-2 hover:text-gray-100 transition-all duration-200 ease-in-out before:absolute before:-bottom-[6px] md:before:bottom-auto md:before:-left-5 before:content-[''] md:before:w-1 before:w-full before:h-1 md:before:h-6 before:rounded-full before:bg-gradient-to-b before:from-green-gradient before:to-purple-gradient group",
   variants: {
     active: {
       true: 'text-gray-100 font-semibold before:opacity-1',
@@ -70,15 +70,23 @@ interface NavLinkProps extends VariantProps<typeof navlink>, LinkProps {
 export function NavLink({ href, label, icon }: NavLinkProps) {
   const pathname = usePathname()
 
+  const isActive = href === pathname
+
   return (
     <Link
       key={label}
       href={href}
       title={label}
-      className={navlink({ active: href === pathname })}
+      className={navlink({ active: isActive })}
     >
       {icon}
-      <Text className="hidden md:block">{label}</Text>
+      <Text
+        className="hidden transition-all duration-200 ease-in-out group-hover:text-gray-100 md:block"
+        color={isActive ? 'gray100' : 'gray400'}
+        weight={isActive ? 'bold' : 'normal'}
+      >
+        {label}
+      </Text>
     </Link>
   )
 }

@@ -53,7 +53,7 @@ export function NavLinks({ session }: NavLinksProps) {
 }
 
 const navlink = tv({
-  base: "relative flex items-center gap-3 py-2 hover:text-gray-100 transition-all duration-200 ease-in-out before:absolute before:-bottom-[6px] md:before:-left-5 before:content-[''] md:before:w-1 before:w-full before:h-1 md:before:h-6 before:rounded-full before:bg-gradient-to-b before:from-green-gradient before:to-purple-gradient",
+  base: "relative flex items-center gap-3 py-2 hover:text-gray-100 transition-all duration-200 ease-in-out before:absolute before:-bottom-[6px] md:before:bottom-auto md:before:-left-5 before:content-[''] md:before:w-1 before:w-full before:h-1 md:before:h-6 before:rounded-full before:bg-gradient-to-b before:from-green-gradient before:to-purple-gradient",
   variants: {
     active: {
       true: 'text-gray-100 font-semibold before:opacity-1',

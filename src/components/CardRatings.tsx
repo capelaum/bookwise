@@ -14,13 +14,13 @@ export type Rating = {
   user: {
     id: string
     name: string
-    avatar_url: string | null
+    avatarUrl: string | null
   }
   book: {
     id: string
     name: string
     author: string
-    cover_url: string
+    coverUrl: string
   }
 }
 
@@ -38,7 +38,7 @@ export async function CardRatings() {
             <div className="flex flex-col items-center gap-2 xs:flex-row xs:gap-4">
               <AvatarProfile
                 name={rating.user.name}
-                avatar_url={rating.user.avatar_url}
+                avatar_url={rating.user.avatarUrl}
               />
 
               <div className="flex flex-col items-center xs:items-start">
@@ -56,7 +56,7 @@ export async function CardRatings() {
             <Image
               width={108}
               height={152}
-              src={rating.book.cover_url}
+              src={rating.book.coverUrl}
               alt={rating.book.name}
               className="h-[152px] w-[108px] rounded-md object-cover"
             />

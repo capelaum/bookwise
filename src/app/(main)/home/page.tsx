@@ -1,14 +1,13 @@
-import Image from 'next/image'
 import { Suspense } from 'react'
 
 import { CardRatings } from '@/components/CardRatings'
-import CardRatingsSkeleton from '@/components/CardRatingsSkeleton'
 import { CaretRight, ChartLineUp } from '@/components/Icons'
 import { PageHeading } from '@/components/PageHeading'
-import { Heading } from '@/components/ui/Heading'
-import { Stars } from '@/components/ui/Stars'
+import { PopularBooksList } from '@/components/PopularBooksList'
+import { PopularBooksListSkeleton } from '@/components/Skeletons/PopularBooksListSkeleton'
+import { RatingCardsListSkeleton } from '@/components/Skeletons/RatingCardsListSkeleton'
 import { Text } from '@/components/ui/Text'
-import { TextLink } from '@/components/ui/TextLinks'
+import { TextLink } from '@/components/ui/TextLink'
 
 export default async function Home() {
   return (
@@ -24,7 +23,7 @@ export default async function Home() {
             Avaliações mais recentes
           </Text>
 
-          <Suspense fallback={<CardRatingsSkeleton />}>
+          <Suspense fallback={<RatingCardsListSkeleton />}>
             <CardRatings />
           </Suspense>
         </section>
@@ -39,27 +38,9 @@ export default async function Home() {
             </TextLink>
           </div>
 
-          <div className="flex flex-col gap-3">
-            <div className="flex gap-5 rounded-lg border-2 border-gray-700 bg-gray-700 px-5 py-4 hover:border-gray-600">
-              <Image
-                width={64}
-                height={94}
-                src="https://res.cloudinary.com/capelaum/image/upload/v1680597630/BookWise/books/Book_heekbj.png"
-                alt=""
-                className="h-[94px] w-[64px] rounded-sm object-cover"
-              />
-
-              <div className="flex flex-col">
-                <Heading size="xs">A revolução dos bichos</Heading>
-
-                <Text size="sm" color="gray400">
-                  George Orwell
-                </Text>
-
-                <Stars rating={4} size="sm" className="mt-auto" />
-              </div>
-            </div>
-          </div>
+          <Suspense fallback={<PopularBooksListSkeleton />}>
+            <PopularBooksList />
+          </Suspense>
         </section>
       </div>
     </div>

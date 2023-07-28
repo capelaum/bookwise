@@ -1,12 +1,12 @@
 import { Skeleton } from '@/components/ui/Skeleton'
 
-import { Stars } from './ui/Stars'
+import { Stars } from '../ui/Stars'
 
-export default function CardRatingsSkeleton() {
+export function RatingCardsListSkeleton() {
   return (
     <div className="flex w-full flex-col gap-3">
-      {Array.from({ length: 5 }, (_, i) => i + 1).map((_, i) => (
-        <Skeleton key={i + 1} className="h-72 w-full rounded-lg p-6">
+      {[1, 2, 3, 4, 5].map((_, i) => (
+        <Skeleton key={i} className="h-72 w-full rounded-lg p-6">
           <div className="mb-8 flex justify-between">
             <div className="flex gap-4">
               <Skeleton className="aspect-square h-10 w-10 rounded-full bg-gray-500" />

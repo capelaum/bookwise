@@ -3,27 +3,6 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --gray-800: 217 22% 7%;
-    --gray-700: 227 27% 13%;
-    --gray-600: 227 33% 22%;
-    --gray-500: 227 41% 32%;
-    --gray-400: 227 17% 62%;
-    --gray-300: 227 26% 86%;
-    --gray-200: 227 33% 93%;
-    --gray-100: 227 32% 98%;
-
-    --purple-200: 241 50% 32%;
-    --purple-100: 241 54% 68%;
-
-    --green-300: 194 72% 14%;
-    --green-200: 191 48% 28%;
-    --green-100: 187 47% 53%;
-
-    --green-gradient: 176 47% 66%;
-    --purple-gradient: 241 83% 77%;
-  }
-
   * {
     box-sizing: border-box;
     margin: 0;
@@ -32,11 +11,10 @@
 
   body {
     font-family: var(--font-nunito), sans-serif;
-    background-color: hsl(var(--gray-800));
-    color: hsl(var(--gray-100));
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
 }
 
 @layer components {

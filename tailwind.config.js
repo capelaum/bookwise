@@ -19,27 +19,30 @@ module.exports = {
       padding: '2rem'
     },
     extend: {
+      fontFamily: {
+        nunito: ['var(--font-nunito)']
+      },
       colors: {
         gray: {
-          100: 'hsl(var(--gray-100))',
-          200: 'hsl(var(--gray-200))',
-          300: 'hsl(var(--gray-300))',
-          400: 'hsl(var(--gray-400))',
-          500: 'hsl(var(--gray-500))',
-          600: 'hsl(var(--gray-600))',
-          700: 'hsl(var(--gray-700))',
-          800: 'hsl(var(--gray-800))'
+          100: 'hsl(227 32% 98%)',
+          200: 'hsl(227 33% 93%)',
+          300: 'hsl(227 26% 86%)',
+          400: 'hsl(227 17% 62%)',
+          500: 'hsl(227 41% 32%)',
+          600: 'hsl(227 33% 22%)',
+          700: 'hsl(227 27% 13%)',
+          800: 'hsl(217 22% 7%)'
         },
         purple: {
-          100: 'hsl(var(--purple-100))',
-          200: 'hsl(var(--purple-200))',
-          gradient: 'hsl(var(--purple-gradient))'
+          100: 'hsl(241 54% 68%)',
+          200: 'hsl(241 50% 32%)',
+          gradient: 'hsl(241 83% 77%)'
         },
         green: {
-          100: 'hsl(var(--green-100))',
-          200: 'hsl(var(--green-200))',
-          300: 'hsl(var(--green-300))',
-          gradient: 'hsl(var(--green-gradient))'
+          100: 'hsl(187 47% 53%)',
+          200: 'hsl(191 48% 28%)',
+          300: 'hsl(194 72% 14%)',
+          gradient: 'hsl(176 47% 66%)'
         }
       },
       lineHeight: {

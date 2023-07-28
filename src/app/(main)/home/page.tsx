@@ -1,3 +1,4 @@
+import { Metadata } from 'next'
 import { Suspense } from 'react'
 
 import { CardRatings } from '@/components/CardRatings'
@@ -9,12 +10,16 @@ import { RatingCardsListSkeleton } from '@/components/Skeletons/RatingCardsListS
 import { Text } from '@/components/ui/Text'
 import { TextLink } from '@/components/ui/TextLink'
 
+export const metadata: Metadata = {
+  title: 'Início | BookWise'
+}
+
 export default async function Home() {
   return (
     <div className="ml-0 mt-16 w-full md:ml-[250px] 2xl:ml-[348px]">
       <PageHeading
         title="Início"
-        icon={<ChartLineUp size={32} color="hsl(var(--green-100))" />}
+        icon={<ChartLineUp size={32} className="text-green-100" />}
       />
 
       <div className="mt-10 flex w-full items-start gap-5 2xl:gap-16">

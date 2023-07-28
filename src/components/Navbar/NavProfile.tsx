@@ -73,7 +73,7 @@ export function NavProfile({ session }: NavProfileProps) {
       <Text weight="bold" className="hidden md:block">
         Fazer login
       </Text>
-      <SignIn size={24} color="hsl(var(--green-100))" />
+      <SignIn size={24} className="text-green-100" />
     </Link>
   )
 }

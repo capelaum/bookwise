@@ -10,8 +10,7 @@ import '@/styles/globals.css'
 const nunito = Nunito_Sans({
   subsets: ['latin'],
   variable: '--font-nunito',
-  display: 'swap',
-  preload: true
+  display: 'swap'
 })
 
 export const metadata: Metadata = {
@@ -22,11 +21,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="pt-BR">
+    <html lang="pt-BR" className={nunito.variable}>
       <head>
         <Favicon />
       </head>
-      <body className={nunito.className}>
+      <body className="bg-gray-800 text-gray-100">
         <Toaster />
         <Providers>{children}</Providers>
       </body>

@@ -5,7 +5,7 @@ import { CardRatings } from '@/components/CardRatings'
 import { CaretRight, ChartLineUp } from '@/components/Icons'
 import { PageHeading } from '@/components/PageHeading'
 import { PopularBooksList } from '@/components/PopularBooksList'
-import { PopularBooksListSkeleton } from '@/components/Skeletons/PopularBooksListSkeleton'
+import { BookCardSkeleton } from '@/components/Skeletons/BookCardSkeleton'
 import { RatingCardsListSkeleton } from '@/components/Skeletons/RatingCardsListSkeleton'
 import { Text } from '@/components/ui/Text'
 import { TextLink } from '@/components/ui/TextLink'
@@ -43,9 +43,11 @@ export default async function Home() {
             </TextLink>
           </div>
 
-          <Suspense fallback={<PopularBooksListSkeleton />}>
-            <PopularBooksList />
-          </Suspense>
+          <div className="flex flex-col gap-3">
+            <Suspense fallback={<BookCardSkeleton variant="popular" />}>
+              <PopularBooksList />
+            </Suspense>
+          </div>
         </section>
       </div>
     </div>

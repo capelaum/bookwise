@@ -74,11 +74,7 @@ export async function CardRatings() {
                 <span className="mt-2 xs:mt-0">{rating.book.author}</span>
               </Text>
 
-              <Text
-                size="sm"
-                className="mt-5 overflow-hidden text-ellipsis"
-                color="gray300"
-              >
+              <Text size="sm" className="mt-5 line-clamp-4" color="gray300">
                 {rating.description}
               </Text>
             </div>

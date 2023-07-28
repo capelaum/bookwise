@@ -14,22 +14,24 @@ export async function GET(req: Request) {
       }
     })
 
-    const ratings = ratingsData.map((rating) => ({
-      id: rating.id,
-      description: rating.description,
-      rate: rating.rate,
-      user: {
-        id: rating.user.id,
-        name: rating.user.name,
-        avatarUrl: rating.user.avatar_url
-      },
-      book: {
-        id: rating.book.id,
-        name: rating.book.name,
-        author: rating.book.author,
-        coverUrl: rating.book.cover_url
-      }
-    }))
+    const ratings = ratingsData.map(
+      ({ id, description, rate, user, book }) => ({
+        id: id,
+        description: description,
+        rate: rate,
+        user: {
+          id: user.id,
+          name: user.name,
+          avatarUrl: user.avatar_url
+        },
+        book: {
+          id: book.id,
+          name: book.name,
+          author: book.author,
+          coverUrl: book.cover_url
+        }
+      })
+    )
 
     // await new Promise((resolve) => setTimeout(resolve, 3000))
 

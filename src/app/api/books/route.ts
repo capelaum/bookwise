@@ -7,21 +7,21 @@ export async function GET(req: Request) {
   const { searchParams } = new URL(req.url)
 
   try {
-    const { selectedCategoryId } = z
+    const { categoryId } = z
       .object({
-        selectedCategoryId: z.string()
+        categoryId: z.string()
       })
       .parse({
-        selectedCategoryId: searchParams.get('selectedCategoryId')
+        categoryId: searchParams.get('categoryId')
       })
 
     let whereClause = {}
 
-    if (selectedCategoryId !== 'all') {
+    if (categoryId !== 'all') {
       whereClause = {
         categories: {
           some: {
-            category_id: selectedCategoryId
+            category_id: categoryId
           }
         }
       }

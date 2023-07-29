@@ -10,13 +10,13 @@ export type Category = {
 }
 
 interface CategoriesFiltersProps {
-  selectedCategory: string
-  setSelectedCategory: (selectedCategory: string) => void
+  categoryId: string
+  setCategoryId: (selectedCategory: string) => void
 }
 
 export function CategoriesFilters({
-  selectedCategory,
-  setSelectedCategory
+  categoryId,
+  setCategoryId
 }: CategoriesFiltersProps) {
   const { isLoading, data: categories } = useQuery(['categories'], async () => {
     const { data: categories } = await api('/api/categories')
@@ -34,9 +34,9 @@ export function CategoriesFilters({
     <Tag
       key={category.id}
       text={category.name}
-      active={category.id === selectedCategory}
+      active={category.id === categoryId}
       onClick={async () => {
-        setSelectedCategory(category.id)
+        setCategoryId(category.id)
         await queryClient.invalidateQueries(['books', 'categories'])
       }}
     />

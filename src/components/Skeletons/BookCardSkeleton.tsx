@@ -1,3 +1,4 @@
+import { createArrayFrom1ToN } from '@/lib/utils'
 import { VariantProps, tv } from 'tailwind-variants'
 
 import { Skeleton } from '../ui/Skeleton'
@@ -26,7 +27,7 @@ const bookCardSkeleton = tv({
 interface BookCardSkeleton extends VariantProps<typeof bookCardSkeleton> {}
 
 export function BookCardSkeleton({ variant }: BookCardSkeleton) {
-  return Array.from({ length: 15 }, (_, index) => index + 1).map((_, i) => (
+  return createArrayFrom1ToN(6).map((_, i) => (
     <Skeleton key={i} className={bookCardSkeleton().base()}>
       <Skeleton className={bookCardSkeleton({ variant }).image()} />
 

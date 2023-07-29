@@ -1,11 +1,12 @@
 import { Skeleton } from '@/components/ui/Skeleton'
+import { createArrayFrom1ToN } from '@/lib/utils'
 
 import { Stars } from '../ui/Stars'
 
 export function RatingCardsListSkeleton() {
   return (
     <div className="flex w-full flex-col gap-3">
-      {[1, 2, 3, 4, 5].map((_, i) => (
+      {createArrayFrom1ToN(5).map((_, i) => (
         <Skeleton key={i} className="h-72 w-full rounded-lg p-6">
           <div className="mb-8 flex justify-between">
             <div className="flex gap-4">

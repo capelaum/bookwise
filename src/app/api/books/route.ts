@@ -1,14 +1,39 @@
 import { NextResponse } from 'next/server'
 
 import { db } from '@/lib/db'
+import { z } from 'zod'
 
 export async function GET(req: Request) {
+  const { searchParams } = new URL(req.url)
+
   try {
+    const { selectedCategoryId } = z
+      .object({
+        selectedCategoryId: z.string()
+      })
+      .parse({
+        selectedCategoryId: searchParams.get('selectedCategoryId')
+      })
+
+    let whereClause = {}
+
+    if (selectedCategoryId !== '1') {
+      whereClause = {
+        categories: {
+          some: {
+            category_id: selectedCategoryId
+          }
+        }
+      }
+    }
+
     const books = (
       await db.book.findMany({
         include: {
-          ratings: true
-        }
+          ratings: true,
+          categories: true
+        },
+        where: whereClause
       })
     )
       .map(({ id, name, author, cover_url, ratings }) => {
@@ -27,11 +52,14 @@ export async function GET(req: Request) {
       })
       .sort((bookA, bookB) => bookB.numberOfRatings - bookA.numberOfRatings)
 
+    console.log('💥 ~ books:', books)
+
     return NextResponse.json(books)
   } catch (error) {
+    console.log('💥 ~ error:', error)
     return NextResponse.json({
       error,
-      message: 'Could not fetch ratings',
+      message: 'Could not fetch books',
       status: 500
     })
   }

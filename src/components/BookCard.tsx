@@ -35,14 +35,14 @@ export function BookCard({ book, variant }: BookCardProps) {
   return (
     <div className={bookCard().base()}>
       <Image
-        width={64}
-        height={94}
+        width={108}
+        height={152}
         src={book.coverUrl}
         alt={book.name}
         className={bookCard({ variant }).image()}
       />
 
-      <div className="flex flex-col">
+      <div className="flex flex-col overflow-hidden">
         <Heading size="xs" className="line-clamp-2">
           {book.name}
         </Heading>

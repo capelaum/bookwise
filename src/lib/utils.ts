@@ -30,3 +30,7 @@ export const getUserFirstName = (name: string) => {
 
   return nameArray[0]
 }
+
+export function createArrayFrom1ToN(n: number) {
+  return Array.from({ length: n }, (_, index) => index + 1)
+}

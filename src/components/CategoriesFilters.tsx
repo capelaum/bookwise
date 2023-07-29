@@ -35,10 +35,7 @@ export function CategoriesFilters({
       key={category.id}
       text={category.name}
       active={category.id === categoryId}
-      onClick={async () => {
-        setCategoryId(category.id)
-        await queryClient.invalidateQueries(['books', 'categories'])
-      }}
+      onClick={async () => setCategoryId(category.id)}
     />
   ))
 }

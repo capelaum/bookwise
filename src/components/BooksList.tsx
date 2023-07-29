@@ -3,7 +3,7 @@
 import { useState } from 'react'
 
 import { Book } from '@/app/(main)/explore/page'
-import { Binoculars } from '@/components/Icons'
+import { Binoculars, MagnifyingGlass } from '@/components/Icons'
 import { api } from '@/lib/api'
 import { useQuery } from '@tanstack/react-query'
 
@@ -11,6 +11,7 @@ import { BookCard } from './BookCard'
 import { CategoriesFilters } from './CategoriesFilters'
 import { PageHeading } from './PageHeading'
 import { BookCardSkeleton } from './Skeletons/BookCardSkeleton'
+import { Input } from './ui/Input'
 
 export function BooksList() {
   const [categoryId, setCategoryId] = useState<string>('all')
@@ -26,10 +27,18 @@ export function BooksList() {
 
   return (
     <>
-      <PageHeading
-        title="Explorar"
-        icon={<Binoculars size={32} className="text-green-100" />}
-      />
+      <div className="flex justify-between">
+        <PageHeading
+          title="Explorar"
+          icon={<Binoculars size={32} className="text-green-100" />}
+        />
+
+        <Input
+          icon={<MagnifyingGlass size={20} />}
+          placeholder="Buscar livro ou autor"
+          className="w-[40%]"
+        />
+      </div>
 
       <div className="mb-12 mt-10 flex flex-wrap gap-3">
         <CategoriesFilters

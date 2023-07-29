@@ -8,7 +8,7 @@ export async function GET(req: Request) {
 
     const categoryFilters = [
       {
-        id: '1',
+        id: 'all',
         name: 'Tudo'
       },
       ...categories

@@ -17,7 +17,7 @@ export async function GET(req: Request) {
 
     let whereClause = {}
 
-    if (selectedCategoryId !== '1') {
+    if (selectedCategoryId !== 'all') {
       whereClause = {
         categories: {
           some: {

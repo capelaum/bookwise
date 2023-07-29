@@ -11,7 +11,7 @@ import { CategoriesFilters } from './CategoriesFilters'
 import { BookCardSkeleton } from './Skeletons/BookCardSkeleton'
 
 export function BooksList() {
-  const [selectedCategoryId, setSelectedCategoryId] = useState<string>('1')
+  const [selectedCategoryId, setSelectedCategoryId] = useState<string>('all')
 
   const { isLoading, data: books } = useQuery(
     ['books', selectedCategoryId],

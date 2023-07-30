@@ -3,8 +3,6 @@ import { NextResponse } from 'next/server'
 import { db } from '@/lib/db'
 import { z } from 'zod'
 
-type WhereClause = {}
-
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url)
 

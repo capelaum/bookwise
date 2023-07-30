@@ -4,6 +4,7 @@ import { useState } from 'react'
 
 import { Book } from '@/app/(main)/explore/page'
 import { Binoculars, MagnifyingGlass } from '@/components/Icons'
+import { useDebounce } from '@/hooks/useDebounce'
 import { api } from '@/lib/api'
 import { useQuery } from '@tanstack/react-query'
 
@@ -12,14 +13,19 @@ import { CategoriesFilters } from './CategoriesFilters'
 import { PageHeading } from './PageHeading'
 import { BookCardSkeleton } from './Skeletons/BookCardSkeleton'
 import { Input } from './ui/Input'
+import { Text } from './ui/Text'
 
 export function BooksList() {
   const [categoryId, setCategoryId] = useState<string>('all')
+  const [search, setSearch] = useState('')
+  const debouncedSearch = useDebounce(search, 500)
 
   const { isLoading, data: books } = useQuery(
-    ['books', categoryId],
+    ['books', categoryId, debouncedSearch],
     async () => {
-      const { data: books } = await api(`/api/books?categoryId=${categoryId}`)
+      const { data: books } = await api(
+        `/api/books?categoryId=${categoryId}&search=${debouncedSearch}`
+      )
 
       return books as Book[]
     }
@@ -37,6 +43,7 @@ export function BooksList() {
           icon={<MagnifyingGlass size={20} />}
           placeholder="Buscar livro ou autor"
           className="w-[40%]"
+          onChange={(e) => setSearch(e.target.value)}
         />
       </div>
 
@@ -46,6 +53,12 @@ export function BooksList() {
           setCategoryId={setCategoryId}
         />
       </div>
+
+      {!isLoading && books?.length === 0 && (
+        <Text size="sm" weight="bold" color="gray300">
+          Não foram encontrados livros para essa busca 💤
+        </Text>
+      )}
 
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
         {isLoading ? (

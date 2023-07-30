@@ -3,16 +3,20 @@ import { NextResponse } from 'next/server'
 import { db } from '@/lib/db'
 import { z } from 'zod'
 
+type WhereClause = {}
+
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url)
 
   try {
-    const { categoryId } = z
+    const { categoryId, search } = z
       .object({
-        categoryId: z.string()
+        categoryId: z.string(),
+        search: z.string().optional()
       })
       .parse({
-        categoryId: searchParams.get('categoryId')
+        categoryId: searchParams.get('categoryId'),
+        search: searchParams.get('search')
       })
 
     let whereClause = {}
@@ -33,7 +37,21 @@ export async function GET(req: Request) {
           ratings: true,
           categories: true
         },
-        where: whereClause
+        where: {
+          OR: [
+            {
+              name: {
+                contains: search
+              }
+            },
+            {
+              author: {
+                contains: search
+              }
+            }
+          ],
+          ...whereClause
+        }
       })
     )
       .map(({ id, name, author, cover_url, ratings }) => {

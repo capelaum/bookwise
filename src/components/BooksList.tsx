@@ -33,7 +33,7 @@ export function BooksList() {
 
   return (
     <>
-      <div className="flex justify-between">
+      <div className="flex flex-col justify-between gap-5 lg:flex-row">
         <PageHeading
           title="Explorar"
           icon={<Binoculars size={32} className="text-green-100" />}
@@ -42,7 +42,7 @@ export function BooksList() {
         <Input
           icon={<MagnifyingGlass size={20} />}
           placeholder="Buscar livro ou autor"
-          className="w-[40%]"
+          className="w-full lg:w-[60%] xl:w-[40%]"
           onChange={(e) => setSearch(e.target.value)}
         />
       </div>

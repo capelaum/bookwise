@@ -24,10 +24,12 @@ const bookCardSkeleton = tv({
   }
 })
 
-interface BookCardSkeleton extends VariantProps<typeof bookCardSkeleton> {}
+interface BookCardSkeleton extends VariantProps<typeof bookCardSkeleton> {
+  quantity?: number
+}
 
-export function BookCardSkeleton({ variant }: BookCardSkeleton) {
-  return createArrayFrom1ToN(6).map((_, i) => (
+export function BookCardSkeleton({ variant, quantity = 6 }: BookCardSkeleton) {
+  return createArrayFrom1ToN(quantity).map((_, i) => (
     <Skeleton key={i} className={bookCardSkeleton().base()}>
       <Skeleton className={bookCardSkeleton({ variant }).image()} />
 

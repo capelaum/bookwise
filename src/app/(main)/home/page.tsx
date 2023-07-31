@@ -44,7 +44,9 @@ export default async function Home() {
           </div>
 
           <div className="flex flex-col gap-3">
-            <Suspense fallback={<BookCardSkeleton variant="popular" />}>
+            <Suspense
+              fallback={<BookCardSkeleton quantity={5} variant="popular" />}
+            >
               <PopularBooksList />
             </Suspense>
           </div>

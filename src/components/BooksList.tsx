@@ -50,9 +50,9 @@ export function BooksList() {
 
       <Sheet>
         <SheetTrigger>Open</SheetTrigger>
-        <SheetContent className="w-full max-w-[660px] px-3 py-16 sm:px-12">
+        <SheetContent className="w-full max-w-[660px] px-3 py-16 xs:px-12">
           {isLoading ? (
-            <BookCardSkeleton quantity={1} />
+            <BookCardSkeleton quantity={1} variant="sheet" />
           ) : (
             <BookCard book={books![0]} variant="sheet" />
           )}

@@ -10,7 +10,7 @@ import { Text } from './ui/Text'
 
 const bookCard = tv({
   slots: {
-    base: 'flex flex-col gap-5 sm:gap-10 rounded-lg border-2 border-gray-700 bg-gray-700 px-5 py-4 hover:border-gray-600 transition-all duration-200 ease-in-out',
+    base: 'flex flex-col gap-5 xs:gap-10 rounded-lg border-2 border-gray-700 bg-gray-700 px-5 py-4 hover:border-gray-600 transition-all duration-200 ease-in-out',
     book: 'flex gap-5',
     image: 'rounded-[4px] object-cover',
     heading: 'text-base line-clamp-2',
@@ -25,9 +25,9 @@ const bookCard = tv({
         image: 'h-[94px] w-[64px]'
       },
       sheet: {
-        base: 'rounded-xl px-5 py-4 sm:px-8 sm:py-6',
-        book: 'gap-5 sm:gap-8',
-        image: 'h-[152px] w-[108px] sm:h-[242px] sm:w-[172px] rounded-xl',
+        base: 'rounded-xl px-5 py-4 xs:px-8 xs:py-6 hover:border-gray-700',
+        book: 'gap-5 xs:gap-8',
+        image: 'h-[152px] w-[108px] xs:h-[242px] xs:w-[172px] rounded-xl',
         heading: 'text-lg',
         author: 'text-base text-gray-300 mt-2'
       }

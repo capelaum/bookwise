@@ -3,7 +3,7 @@ import { Metadata } from 'next'
 import { BooksList } from '@/components/BooksList'
 
 export const metadata: Metadata = {
-  title: 'Explorar | BookWise'
+  title: 'BookWise | Explorar'
 }
 
 export type Book = {

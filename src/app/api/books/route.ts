@@ -54,7 +54,6 @@ export async function GET(req: Request) {
     )
       .map(({ id, name, author, cover_url, ratings }) => {
         const sumRatings = ratings.reduce((acc, rating) => acc + rating.rate, 0)
-
         const averageRating = Math.round(sumRatings / ratings.length)
 
         return {
@@ -68,7 +67,7 @@ export async function GET(req: Request) {
       })
       .sort((bookA, bookB) => bookB.numberOfRatings - bookA.numberOfRatings)
 
-    console.log('💥 ~ books:', books)
+    // console.log('💥 ~ books:', books)
 
     return NextResponse.json(books)
   } catch (error) {

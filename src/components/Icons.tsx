@@ -2,9 +2,12 @@
 
 export {
   Binoculars,
+  BookOpen,
+  BookmarkSimple,
   CaretRight,
   ChartLineUp,
   MagnifyingGlass,
   RocketLaunch,
-  Star
+  Star,
+  X
 } from 'phosphor-react'

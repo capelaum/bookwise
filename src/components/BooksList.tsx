@@ -13,6 +13,7 @@ import { CategoriesFilters } from './CategoriesFilters'
 import { PageHeading } from './PageHeading'
 import { BookCardSkeleton } from './Skeletons/BookCardSkeleton'
 import { Input } from './ui/Input'
+import { Sheet, SheetContent, SheetTrigger } from './ui/Sheet'
 import { Text } from './ui/Text'
 
 export function BooksList() {
@@ -46,6 +47,17 @@ export function BooksList() {
           onChange={(e) => setSearch(e.target.value)}
         />
       </div>
+
+      <Sheet>
+        <SheetTrigger>Open</SheetTrigger>
+        <SheetContent className="w-full max-w-[660px] px-3 py-16 sm:px-12">
+          {isLoading ? (
+            <BookCardSkeleton quantity={1} />
+          ) : (
+            <BookCard book={books![0]} variant="sheet" />
+          )}
+        </SheetContent>
+      </Sheet>
 
       <div className="mb-12 mt-10 flex flex-wrap gap-3">
         <CategoriesFilters

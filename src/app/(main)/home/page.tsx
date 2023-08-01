@@ -11,7 +11,7 @@ import { Text } from '@/components/ui/Text'
 import { TextLink } from '@/components/ui/TextLink'
 
 export const metadata: Metadata = {
-  title: 'Início | BookWise'
+  title: 'BookWise | Início'
 }
 
 export default async function Home() {

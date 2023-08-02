@@ -6,15 +6,7 @@ export async function GET(req: Request) {
   try {
     const categories = await db.category.findMany()
 
-    const categoryFilters = [
-      {
-        id: 'all',
-        name: 'Tudo'
-      },
-      ...categories
-    ]
-
-    return NextResponse.json(categoryFilters)
+    return NextResponse.json([{ id: 'all', name: 'Tudo' }, ...categories])
   } catch (error) {
     return NextResponse.json({
       error,

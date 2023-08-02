@@ -13,13 +13,17 @@ import { CategoriesFilters } from './CategoriesFilters'
 import { PageHeading } from './PageHeading'
 import { BookCardSkeleton } from './Skeletons/BookCardSkeleton'
 import { Input } from './ui/Input'
-import { Sheet, SheetContent, SheetTrigger } from './ui/Sheet'
+import { SheetContent } from './ui/Sheet'
 import { Text } from './ui/Text'
 
 export function BooksList() {
   const [categoryId, setCategoryId] = useState<string>('all')
+
   const [search, setSearch] = useState('')
   const debouncedSearch = useDebounce(search, 500)
+
+  const [isFetchingBook, setIsFetchingBook] = useState(false)
+  const [book, setBook] = useState<Book | null>(null)
 
   const { isLoading, data: books } = useQuery(
     ['books', categoryId, debouncedSearch],
@@ -31,6 +35,19 @@ export function BooksList() {
       return books as Book[]
     }
   )
+
+  async function fetchBook(id: string) {
+    setIsFetchingBook(true)
+    try {
+      const { data: book }: { data: Book } = await api(`/api/books/${id}`)
+
+      setBook(book)
+    } catch (e) {
+      console.error('Error:', e)
+    } finally {
+      setIsFetchingBook(false)
+    }
+  }
 
   return (
     <>
@@ -48,17 +65,6 @@ export function BooksList() {
         />
       </div>
 
-      <Sheet>
-        <SheetTrigger>Open</SheetTrigger>
-        <SheetContent className="w-full max-w-[660px] px-3 py-16 xs:px-12">
-          {isLoading ? (
-            <BookCardSkeleton quantity={1} variant="sheet" />
-          ) : (
-            <BookCard book={books![0]} variant="sheet" />
-          )}
-        </SheetContent>
-      </Sheet>
-
       <div className="mb-12 mt-10 flex flex-wrap gap-3">
         <CategoriesFilters
           categoryId={categoryId}
@@ -72,11 +78,21 @@ export function BooksList() {
         </Text>
       )}
 
+      <SheetContent className="w-full max-w-[660px] px-3 py-16 xs:px-12">
+        {isFetchingBook ? (
+          <BookCardSkeleton quantity={1} variant="sheet" />
+        ) : (
+          <BookCard book={book!} variant="sheet" />
+        )}
+      </SheetContent>
+
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
         {isLoading ? (
           <BookCardSkeleton />
         ) : (
-          books?.map((book) => <BookCard book={book} key={book.id} />)
+          books?.map((book) => (
+            <BookCard onClick={fetchBook} book={book} key={book.id} />
+          ))
         )}
       </div>
     </>

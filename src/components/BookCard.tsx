@@ -5,13 +5,14 @@ import { BookOpen, BookmarkSimple } from '@/components/Icons'
 import { VariantProps, tv } from 'tailwind-variants'
 
 import { Heading } from './ui/Heading'
+import { SheetTrigger } from './ui/Sheet'
 import { Stars } from './ui/Stars'
 import { Text } from './ui/Text'
 
 const bookCard = tv({
   slots: {
-    base: 'flex flex-col gap-5 xs:gap-10 rounded-lg border-2 border-gray-700 bg-gray-700 px-5 py-4 hover:border-gray-600 transition-all duration-200 ease-in-out',
-    book: 'flex gap-5',
+    base: 'w-full flex flex-col gap-5 xs:gap-10 rounded-lg border-2 border-gray-700 bg-gray-700 px-5 py-4 hover:border-gray-600 transition-all duration-200 ease-in-out text-left',
+    book: 'flex gap-5 ',
     image: 'rounded-[4px] object-cover',
     heading: 'text-base line-clamp-2',
     author: 'text-sm text-gray-400'
@@ -40,11 +41,15 @@ const bookCard = tv({
 
 interface BookCardProps extends VariantProps<typeof bookCard> {
   book: Book
+  onClick?: (id: string) => Promise<void>
 }
 
-export function BookCard({ book, variant }: BookCardProps) {
+export function BookCard({ book, onClick, variant }: BookCardProps) {
   return (
-    <div className={bookCard({ variant }).base()}>
+    <SheetTrigger
+      onClick={onClick ? () => onClick(book.id) : undefined}
+      className={bookCard({ variant }).base()}
+    >
       <div className={bookCard({ variant }).book()}>
         <Image
           width={108}
@@ -77,32 +82,32 @@ export function BookCard({ book, variant }: BookCardProps) {
       </div>
 
       {variant === 'sheet' && (
-        <div className="flex flex-col gap-8 border-t border-gray-600 pt-6 sm:flex-row sm:gap-14">
-          <div className="flex items-center gap-4">
+        <div className="flex w-full flex-col gap-8 border-t border-gray-600 pt-6 sm:flex-row">
+          <div className="flex items-center gap-4 sm:w-1/2">
             <BookmarkSimple size={24} className="text-green-100" />
             <div>
               <Text size="sm" color="gray300">
                 Categoria
               </Text>
               <Heading size="xs" className="text-gray-200" asChild>
-                <h2>Computação, educação</h2>
+                <h2>{book.categoriesNames}</h2>
               </Heading>
             </div>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex w-full items-center gap-4 sm:w-1/2">
             <BookOpen size={24} className="text-green-100" />
             <div>
               <Text size="sm" color="gray300">
                 Páginas
               </Text>
               <Heading size="xs" className="text-gray-200" asChild>
-                <h2>160</h2>
+                <h2>{book.totalPages}</h2>
               </Heading>
             </div>
           </div>
         </div>
       )}
-    </div>
+    </SheetTrigger>
   )
 }

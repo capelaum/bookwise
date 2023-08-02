@@ -1,6 +1,6 @@
 import { api } from '@/lib/api'
 import { Category } from '@/types/app'
-import { useQuery, useQueryClient } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 
 import { CategoryTagSkeleton } from './Skeletons/CategoryTagSkeleton'
 import { Tag } from './ui/Tag'
@@ -20,18 +20,20 @@ export function CategoriesFilters({
     return categories as Category[]
   })
 
-  const queryClient = useQueryClient()
-
-  if (isLoading) {
-    return <CategoryTagSkeleton />
-  }
-
-  return categories?.map((category) => (
-    <Tag
-      key={category.id}
-      text={category.name}
-      active={category.id === categoryId}
-      onClick={async () => setCategoryId(category.id)}
-    />
-  ))
+  return (
+    <div className="mb-12 mt-10 flex flex-wrap gap-3">
+      {isLoading ? (
+        <CategoryTagSkeleton />
+      ) : (
+        categories?.map((category) => (
+          <Tag
+            key={category.id}
+            text={category.name}
+            active={category.id === categoryId}
+            onClick={async () => setCategoryId(category.id)}
+          />
+        ))
+      )}
+    </div>
+  )
 }

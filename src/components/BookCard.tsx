@@ -1,7 +1,7 @@
 import Image from 'next/image'
 
-import { Book } from '@/app/(main)/explore/page'
 import { BookOpen, BookmarkSimple } from '@/components/Icons'
+import { Book } from '@/types/app'
 import { VariantProps, tv } from 'tailwind-variants'
 
 import { Heading } from './ui/Heading'
@@ -11,7 +11,7 @@ import { Text } from './ui/Text'
 
 const bookCard = tv({
   slots: {
-    base: 'w-full flex flex-col gap-5 xs:gap-10 rounded-lg border-2 border-gray-700 bg-gray-700 px-5 py-4 hover:border-gray-600 transition-all duration-200 ease-in-out text-left',
+    base: 'w-full flex flex-col gap-5 xs:gap-10 rounded-lg border-2 border-gray-700 bg-gray-700 px-5 py-4 hover:border-gray-600 transition-all duration-200 ease-in-out text-left aria-controls="radix-:R4racq:',
     book: 'flex gap-5 ',
     image: 'rounded-[4px] object-cover',
     heading: 'text-base line-clamp-2',

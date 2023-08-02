@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 
 import { db } from '@/lib/db'
+import { getAverageRating } from '@/lib/utils'
 
 export async function GET(
   request: Request,
@@ -13,7 +14,6 @@ export async function GET(
       id: bookId
     },
     include: {
-      ratings: true,
       categories: {
         select: {
           category: {
@@ -21,6 +21,14 @@ export async function GET(
               name: true
             }
           }
+        }
+      },
+      ratings: {
+        select: {
+          id: true,
+          description: true,
+          rate: true,
+          user: true
         }
       }
     }
@@ -36,9 +44,18 @@ export async function GET(
     categories
   } = book
 
-  const sumRatings = ratings.reduce((acc, rating) => acc + rating.rate, 0)
-  const averageRating = Math.round(sumRatings / ratings.length)
+  const ratingsFormatted = ratings.map(({ id, description, rate, user }) => ({
+    id,
+    description,
+    rate,
+    user: {
+      id: user.id,
+      name: user.name,
+      avatarUrl: user.avatar_url
+    }
+  }))
 
+  const averageRating = getAverageRating(ratingsFormatted)
   const categoriesNames = categories.map((cat) => cat.category.name).join(', ')
 
   return NextResponse.json({
@@ -47,6 +64,7 @@ export async function GET(
     author,
     coverUrl,
     totalPages,
+    ratings: ratingsFormatted,
     rating: averageRating,
     numberOfRatings: ratings.length,
     categoriesNames

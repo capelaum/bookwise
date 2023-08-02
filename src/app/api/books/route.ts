@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 
 import { db } from '@/lib/db'
+import { getAverageRating } from '@/lib/utils'
 import { z } from 'zod'
 
 export async function GET(req: Request) {
@@ -53,8 +54,7 @@ export async function GET(req: Request) {
       })
     )
       .map(({ id, name, author, cover_url, ratings }) => {
-        const sumRatings = ratings.reduce((acc, rating) => acc + rating.rate, 0)
-        const averageRating = Math.round(sumRatings / ratings.length)
+        const averageRating = getAverageRating(ratings)
 
         return {
           id: id,

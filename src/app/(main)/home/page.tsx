@@ -1,12 +1,12 @@
 import { Metadata } from 'next'
 import { Suspense } from 'react'
 
-import { CardRatings } from '@/components/CardRatings'
 import { CaretRight, ChartLineUp } from '@/components/Icons'
 import { PageHeading } from '@/components/PageHeading'
 import { PopularBooksList } from '@/components/PopularBooksList'
+import { RatingList } from '@/components/RatingList'
 import { BookCardSkeleton } from '@/components/Skeletons/BookCardSkeleton'
-import { RatingCardsListSkeleton } from '@/components/Skeletons/RatingCardsListSkeleton'
+import { RatingCardSkeleton } from '@/components/Skeletons/RatingCardSkeleton'
 import { Text } from '@/components/ui/Text'
 import { TextLink } from '@/components/ui/TextLink'
 
@@ -28,9 +28,11 @@ export default async function Home() {
             Avaliações mais recentes
           </Text>
 
-          <Suspense fallback={<RatingCardsListSkeleton />}>
-            <CardRatings />
-          </Suspense>
+          <div className="flex flex-col gap-3">
+            <Suspense fallback={<RatingCardSkeleton />}>
+              <RatingList />
+            </Suspense>
+          </div>
         </section>
 
         <section className="hidden min-w-[324px] xl:block">

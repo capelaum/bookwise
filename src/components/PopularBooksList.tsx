@@ -1,5 +1,5 @@
-import { Book } from '@/app/(main)/explore/page'
 import { api } from '@/lib/api'
+import { Book } from '@/types/app'
 
 import { BookCard } from './BookCard'
 

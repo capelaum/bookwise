@@ -2,10 +2,10 @@
 
 import { useState } from 'react'
 
-import { Book } from '@/app/(main)/explore/page'
 import { Binoculars, MagnifyingGlass } from '@/components/Icons'
 import { useDebounce } from '@/hooks/useDebounce'
 import { api } from '@/lib/api'
+import { Book } from '@/types/app'
 import { useQuery } from '@tanstack/react-query'
 
 import { BookCard } from './BookCard'
@@ -15,6 +15,7 @@ import { BookCardSkeleton } from './Skeletons/BookCardSkeleton'
 import { Input } from './ui/Input'
 import { SheetContent } from './ui/Sheet'
 import { Text } from './ui/Text'
+import { TextLink } from './ui/TextLink'
 
 export function BooksList() {
   const [categoryId, setCategoryId] = useState<string>('all')
@@ -79,11 +80,24 @@ export function BooksList() {
       )}
 
       <SheetContent className="w-full max-w-[660px] px-3 py-16 xs:px-12">
-        {isFetchingBook ? (
-          <BookCardSkeleton quantity={1} variant="sheet" />
-        ) : (
-          <BookCard book={book!} variant="sheet" />
-        )}
+        <section>
+          {isFetchingBook || !book ? (
+            <BookCardSkeleton quantity={1} variant="sheet" />
+          ) : (
+            <BookCard book={book} variant="sheet" />
+          )}
+          <div className="flex flex-col gap-4">
+            <div className="mt-12 flex items-center justify-between">
+              <Text size="sm" color="gray200">
+                Avaliações
+              </Text>
+
+              <TextLink href="#" title="Avaliar">
+                Avaliar
+              </TextLink>
+            </div>
+          </div>
+        </section>
       </SheetContent>
 
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">

@@ -1,3 +1,4 @@
+import { Rating } from '@/types/app'
 import clsx, { ClassValue } from 'clsx'
 import { twMerge } from 'tailwind-merge'
 
@@ -33,4 +34,11 @@ export const getUserFirstName = (name: string) => {
 
 export function createArrayFrom1ToN(n: number) {
   return Array.from({ length: n }, (_, index) => index + 1)
+}
+
+export function getAverageRating(ratings: Rating[]) {
+  const sumRatings = ratings.reduce((acc, rating) => acc + rating.rate, 0)
+  const averageRating = Math.round(sumRatings / ratings.length)
+
+  return averageRating
 }

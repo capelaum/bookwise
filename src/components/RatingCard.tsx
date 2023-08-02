@@ -1,28 +1,55 @@
 import Image from 'next/image'
 
 import { Rating } from '@/types/app'
+import { VariantProps, tv } from 'tailwind-variants'
 
 import { AvatarProfile } from './AvatarProfile'
 import { Heading } from './ui/Heading'
 import { Stars } from './ui/Stars'
 import { Text } from './ui/Text'
 
-interface CardRatingProps {
+const ratingCard = tv({
+  slots: {
+    base: 'h-full w-full rounded-lg border-2 border-gray-700 bg-gray-700 p-6 hover:border-gray-600',
+    profile:
+      'mb-5 flex flex-col justify-between gap-5 xs:mb-8 xs:flex-row xs:items-start',
+    profileUser: 'flex gap-4',
+    profileUserDetails: 'flex flex-col items-start',
+    description: 'text-sm text-gray-300'
+  },
+  variants: {
+    variant: {
+      home: {
+        base: 'md:h-72',
+        profile: 'mb-3 items-center gap-6 xs:gap-3',
+        profileUser: 'flex-col items-center gap-2 xs:flex-row xs:gap-4',
+        profileUserDetails: 'items-center xs:items-start',
+        description: 'line-clamp-4'
+      },
+      sheet: {}
+    }
+  },
+  defaultVariants: {
+    variant: 'home'
+  }
+})
+
+interface CardRatingProps extends VariantProps<typeof ratingCard> {
   rating: Rating
 }
 
-export function RatingCard({ rating }: CardRatingProps) {
+export function RatingCard({ rating, variant }: CardRatingProps) {
   return (
-    <div className="h-full w-full rounded-lg border-2 border-gray-700 bg-gray-700 p-6 hover:border-gray-600 md:h-72">
-      <div className="mb-3 flex flex-col items-center justify-between gap-6 xs:mb-8 xs:flex-row xs:gap-2">
-        <div className="flex flex-col items-center gap-2 xs:flex-row xs:gap-4">
+    <div className={ratingCard({ variant }).base()}>
+      <div className={ratingCard({ variant }).profile()}>
+        <div className={ratingCard({ variant }).profileUser()}>
           <AvatarProfile
-            name={rating.user?.name ?? ''}
-            avatar_url={rating.user?.avatarUrl ?? ''}
+            name={rating.user.name}
+            avatar_url={rating.user.avatarUrl}
           />
 
-          <div className="flex flex-col items-center xs:items-start">
-            <Text>{rating.user?.name}</Text>
+          <div className={ratingCard({ variant }).profileUserDetails()}>
+            <Text>{rating.user.name}</Text>
             <Text size="sm" color="gray400" asChild>
               <span>Hoje</span>
             </Text>
@@ -55,12 +82,12 @@ export function RatingCard({ rating }: CardRatingProps) {
               </Heading>
 
               <Text size="sm" color="gray400" asChild>
-                <span className="mt-2 xs:mt-0">{rating.book.author}</span>
+                <span className="mb-5 mt-2 xs:mt-0">{rating.book.author}</span>
               </Text>
             </>
           )}
 
-          <Text size="sm" className="mt-5 line-clamp-4" color="gray300">
+          <Text className={ratingCard({ variant }).description()}>
             {rating.description}
           </Text>
         </div>

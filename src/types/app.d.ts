@@ -7,16 +7,16 @@ export type Book = {
   numberOfRatings: number
   totalPages?: number
   categoriesNames?: string
-  ratings?: Rating
+  ratings?: Rating[]
 }
 
 export type Rating = {
   id: string
   description: string
   rate: number
-  user?: {
+  user: {
     id: string
-    name: string | null
+    name: string
     avatarUrl: string | null
   }
   book?: {
@@ -26,6 +26,8 @@ export type Rating = {
     coverUrl: string
   }
 }
+
+export type SimpleRating = Omit<Rating, user, book>
 
 export type Category = {
   id: string

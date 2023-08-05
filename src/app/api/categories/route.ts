@@ -4,7 +4,11 @@ import { db } from '@/lib/db'
 
 export async function GET(req: Request) {
   try {
-    const categories = await db.category.findMany()
+    const categories = await db.category.findMany({
+      orderBy: {
+        name: 'asc'
+      }
+    })
 
     return NextResponse.json([{ id: 'all', name: 'Tudo' }, ...categories])
   } catch (error) {

@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 
 import { db } from '@/lib/db'
+import { getAverageRating } from '@/lib/utils'
 
 export async function GET(req: Request) {
   try {
@@ -8,31 +9,27 @@ export async function GET(req: Request) {
       await db.book.findMany({
         include: {
           ratings: true
-        }
+        },
+        take: 5,
+        orderBy: [
+          {
+            ratings: {
+              _count: 'desc'
+            }
+          },
+          {
+            name: 'asc'
+          }
+        ]
       })
-    )
-      .splice(0, 5)
-      .map(({ id, name, author, cover_url, ratings }) => {
-        const sumRatings = ratings.reduce((acc, rating) => acc + rating.rate, 0)
-
-        const averageRating = Math.round(sumRatings / ratings.length)
-
-        return {
-          id: id,
-          name: name,
-          author: author,
-          coverUrl: cover_url,
-          rating: averageRating,
-          numberOfRatings: ratings.length
-        }
-      })
-      .sort((bookA, bookB) => bookB.numberOfRatings - bookA.numberOfRatings)
-
-    const booksWithRatings = await db.book.findMany({
-      include: {
-        ratings: true
-      }
-    })
+    ).map(({ id, name, author, cover_url, ratings }) => ({
+      id: id,
+      name: name,
+      author: author,
+      coverUrl: cover_url,
+      rating: getAverageRating(ratings),
+      numberOfRatings: ratings.length
+    }))
 
     // await new Promise((resolve) => setTimeout(resolve, 3000))
 

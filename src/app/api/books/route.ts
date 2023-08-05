@@ -36,6 +36,16 @@ export async function GET(req: Request) {
           ratings: true,
           categories: true
         },
+        orderBy: [
+          {
+            ratings: {
+              _count: 'desc'
+            }
+          },
+          {
+            name: 'asc'
+          }
+        ],
         where: {
           OR: [
             {
@@ -52,22 +62,14 @@ export async function GET(req: Request) {
           ...whereClause
         }
       })
-    )
-      .map(({ id, name, author, cover_url, ratings }) => {
-        const averageRating = getAverageRating(ratings)
-
-        return {
-          id: id,
-          name: name,
-          author: author,
-          coverUrl: cover_url,
-          rating: averageRating,
-          numberOfRatings: ratings.length
-        }
-      })
-      .sort((bookA, bookB) => bookB.numberOfRatings - bookA.numberOfRatings)
-
-    // console.log('💥 ~ books:', books)
+    ).map(({ id, name, author, cover_url, ratings }) => ({
+      id: id,
+      name: name,
+      author: author,
+      coverUrl: cover_url,
+      rating: getAverageRating(ratings),
+      numberOfRatings: ratings.length
+    }))
 
     return NextResponse.json(books)
   } catch (error) {

@@ -11,7 +11,7 @@ interface BookSheetStore {
   toggleIsBookSheetOpen: (isBookSheetOpen: boolean) => void
 }
 
-export const bookSheetStore = create<BookSheetStore>((set) => ({
+export const useBookSheetStore = create<BookSheetStore>((set) => ({
   book: null,
   setBook: (book) => set({ book }),
   isBookSheetOpen: false,
@@ -33,7 +33,7 @@ const getBook = async (id: string) => {
 }
 
 export const useFetchBook = (id: string) => {
-  const { setBook } = bookSheetStore()
+  const { setBook } = useBookSheetStore()
 
   return useQuery(['book-sheet', id], () => getBook(id), {
     onSuccess: (book) => {

@@ -1,12 +1,9 @@
-import { api } from '@/lib/api'
-import { Book } from '@/types/app'
+import { getPopularBooks } from '@/modules/books/api'
 
 import { BookCard } from './BookCard'
 
 export async function PopularBooksList() {
-  const { data: popularBooks }: { data: Book[] } = await api(
-    '/api/books/popular'
-  )
+  const { popularBooks } = await getPopularBooks()
 
   return popularBooks.map((book) => (
     <BookCard variant="popular" book={book} key={book.id} />

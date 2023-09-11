@@ -1,11 +1,11 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 import { BookOpen, BookmarkSimple } from '@/components/Icons'
 import { Book } from '@/types/app'
 import { VariantProps, tv } from 'tailwind-variants'
 
 import { Heading } from './ui/Heading'
-import { SheetTrigger } from './ui/Sheet'
 import { Stars } from './ui/Stars'
 import { Text } from './ui/Text'
 
@@ -41,13 +41,14 @@ const bookCard = tv({
 
 interface BookCardProps extends VariantProps<typeof bookCard> {
   book: Book
-  onClick?: (id: string) => Promise<void>
 }
 
-export function BookCard({ book, onClick, variant }: BookCardProps) {
+export function BookCard({ book, variant }: BookCardProps) {
   return (
-    <SheetTrigger
-      onClick={onClick ? () => onClick(book.id) : undefined}
+    <Link
+      scroll={false}
+      href={`/explore?bookId=${book.id}`}
+      title={`Ver Livro ${book.name}`}
       className={bookCard({ variant }).base()}
     >
       <div className={bookCard({ variant }).book()}>
@@ -108,6 +109,45 @@ export function BookCard({ book, onClick, variant }: BookCardProps) {
           </div>
         </div>
       )}
-    </SheetTrigger>
+    </Link>
+  )
+}
+
+interface BookCardContentProps extends VariantProps<typeof bookCard> {
+  book: Book
+}
+
+export function BookCardContent({ book, variant }: BookCardContentProps) {
+  return (
+    <div className={bookCard({ variant }).book()}>
+      <Image
+        width={108}
+        height={152}
+        src={book.coverUrl}
+        alt={book.name}
+        className={bookCard({ variant }).image()}
+      />
+
+      <div className="flex flex-col overflow-hidden">
+        <Heading className={bookCard({ variant }).heading()}>
+          {book.name}
+        </Heading>
+
+        <Text className={bookCard({ variant }).author()}>{book.author}</Text>
+
+        <Stars
+          rating={book.rating}
+          size={variant === 'sheet' ? 'md' : 'sm'}
+          className="mt-auto"
+        />
+
+        {variant === 'sheet' && (
+          <Text size="sm" color="gray400" className="mt-2">
+            {book.numberOfRatings}{' '}
+            {book.numberOfRatings > 1 ? 'Avaliações' : 'Avaliação'}
+          </Text>
+        )}
+      </div>
+    </div>
   )
 }

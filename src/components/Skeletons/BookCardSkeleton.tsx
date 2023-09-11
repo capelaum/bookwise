@@ -35,7 +35,7 @@ interface BookCardSkeleton extends VariantProps<typeof bookCardSkeleton> {
   quantity?: number
 }
 
-export function BookCardSkeleton({ variant, quantity = 6 }: BookCardSkeleton) {
+export function BookCardSkeleton({ variant, quantity = 9 }: BookCardSkeleton) {
   return createArrayFrom1ToN(quantity).map((_, i) => (
     <Skeleton key={i} className={bookCardSkeleton({ variant }).base()}>
       <Skeleton className={bookCardSkeleton({ variant }).book()}>

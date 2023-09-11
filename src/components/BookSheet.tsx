@@ -10,7 +10,7 @@ import { Text } from './ui/Text'
 import { TextLink } from './ui/TextLink'
 
 interface BookSheetProps {
-  book: Book | null
+  book?: Book
   isFetchingBook: boolean
 }
 
@@ -37,7 +37,7 @@ export function BookSheet({ book, isFetchingBook }: BookSheetProps) {
 
             <div className="flex flex-col gap-3 pb-6">
               {isFetchingBook || !book?.ratings ? (
-                <RatingCardSkeleton quantity={3} variant="sheet" />
+                <RatingCardSkeleton quantity={1} variant="sheet" />
               ) : (
                 book.ratings.map((rating) => (
                   <RatingCard rating={rating} key={rating.id} variant="sheet" />

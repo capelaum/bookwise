@@ -1,10 +1,12 @@
 'use client'
 
-import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
 
 import { Binoculars, MagnifyingGlass } from '@/components/Icons'
 import { useDebounce } from '@/hooks/useDebounce'
 import { api } from '@/lib/api'
+import { getBook } from '@/modules/books/api'
 import { Book } from '@/types/app'
 import { useQuery } from '@tanstack/react-query'
 
@@ -14,18 +16,33 @@ import { CategoriesFilters } from './CategoriesFilters'
 import { PageHeading } from './PageHeading'
 import { BookCardSkeleton } from './Skeletons/BookCardSkeleton'
 import { Input } from './ui/Input'
+import { Sheet } from './ui/Sheet'
 import { Text } from './ui/Text'
 
-export function BooksList() {
+interface BooksListProps {
+  bookId?: string
+}
+
+export function BooksList({ bookId }: BooksListProps) {
+  const router = useRouter()
+
   const [categoryId, setCategoryId] = useState<string>('all')
 
   const [search, setSearch] = useState('')
   const debouncedSearch = useDebounce(search, 500)
 
-  const [isFetchingBook, setIsFetchingBook] = useState(false)
-  const [book, setBook] = useState<Book | null>(null)
+  const [isSheetOpen, setIsSheetOpen] = useState(false)
 
-  const { isLoading, data: books } = useQuery(
+  // const [isFetchingBook, setIsFetchingBook] = useState(false)
+  // const [book, setBook] = useState<Book | null>(null)
+
+  useEffect(() => {
+    if (bookId) {
+      setIsSheetOpen(true)
+    }
+  }, [bookId])
+
+  const { isLoading: isFetchingBooks, data: books } = useQuery(
     ['books', categoryId, debouncedSearch],
     async () => {
       const { data: books } = await api(
@@ -36,21 +53,26 @@ export function BooksList() {
     }
   )
 
-  async function fetchBook(id: string) {
-    setIsFetchingBook(true)
-    try {
-      const { data: book }: { data: Book } = await api(`/api/books/${id}`)
+  const { isLoading: isFetchingBook, data: book } = useQuery({
+    queryKey: [bookId],
+    queryFn: () => getBook(bookId!),
+    enabled: !!bookId
+  })
 
-      setBook(book)
-    } catch (e) {
-      console.error('Error:', e)
-    } finally {
-      setIsFetchingBook(false)
-    }
+  function toggleSheetOpen() {
+    setIsSheetOpen((isSheetOpen) => !isSheetOpen)
   }
 
   return (
-    <>
+    <Sheet
+      open={isSheetOpen}
+      onOpenChange={() => {
+        toggleSheetOpen()
+        router.replace('/explore', {
+          scroll: false
+        })
+      }}
+    >
       <div className="flex flex-col justify-between gap-5 lg:flex-row">
         <PageHeading
           title="Explorar"
@@ -70,7 +92,7 @@ export function BooksList() {
         setCategoryId={setCategoryId}
       />
 
-      {!isLoading && books?.length === 0 && (
+      {!isFetchingBooks && books?.length === 0 && (
         <Text size="sm" weight="bold" color="gray300">
           Não foram encontrados livros para essa busca 💤
         </Text>
@@ -79,14 +101,12 @@ export function BooksList() {
       <BookSheet book={book} isFetchingBook={isFetchingBook} />
 
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
-        {isLoading ? (
+        {isFetchingBooks ? (
           <BookCardSkeleton />
         ) : (
-          books?.map((book) => (
-            <BookCard onClick={fetchBook} book={book} key={book.id} />
-          ))
+          books?.map((book) => <BookCard book={book} key={book.id} />)
         )}
       </div>
-    </>
+    </Sheet>
   )
 }

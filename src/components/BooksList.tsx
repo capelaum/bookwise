@@ -24,17 +24,12 @@ interface BooksListProps {
 }
 
 export function BooksList({ bookId }: BooksListProps) {
-  const router = useRouter()
-
+  const [isSheetOpen, setIsSheetOpen] = useState(false)
   const [categoryId, setCategoryId] = useState<string>('all')
-
   const [search, setSearch] = useState('')
   const debouncedSearch = useDebounce(search, 500)
 
-  const [isSheetOpen, setIsSheetOpen] = useState(false)
-
-  // const [isFetchingBook, setIsFetchingBook] = useState(false)
-  // const [book, setBook] = useState<Book | null>(null)
+  const router = useRouter()
 
   useEffect(() => {
     if (bookId) {

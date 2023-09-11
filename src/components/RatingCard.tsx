@@ -34,11 +34,11 @@ const ratingCard = tv({
   }
 })
 
-interface CardRatingProps extends VariantProps<typeof ratingCard> {
+interface RatingCardProps extends VariantProps<typeof ratingCard> {
   rating: Rating
 }
 
-export function RatingCard({ rating, variant }: CardRatingProps) {
+export function RatingCard({ rating, variant }: RatingCardProps) {
   return (
     <div className={ratingCard({ variant }).base()}>
       <div className={ratingCard({ variant }).profile()}>

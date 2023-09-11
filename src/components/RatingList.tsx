@@ -1,10 +1,9 @@
-import { api } from '@/lib/api'
-import { Rating } from '@/types/app'
+import { getRatings } from '@/modules/ratings/api'
 
 import { RatingCard } from './RatingCard'
 
 export async function RatingList() {
-  const { data: ratings }: { data: Rating[] } = await api('/api/ratings')
+  const { ratings } = await getRatings()
 
   return ratings.map((rating) => <RatingCard key={rating.id} rating={rating} />)
 }

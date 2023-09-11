@@ -44,45 +44,11 @@ interface BookCardProps extends VariantProps<typeof bookCard> {
 }
 
 export function BookCard({ book, variant }: BookCardProps) {
-  return (
-    <Link
-      scroll={false}
-      href={`/explore?bookId=${book.id}`}
-      title={`Ver Livro ${book.name}`}
-      className={bookCard({ variant }).base()}
-    >
-      <div className={bookCard({ variant }).book()}>
-        <Image
-          width={108}
-          height={152}
-          src={book.coverUrl}
-          alt={book.name}
-          className={bookCard({ variant }).image()}
-        />
+  if (variant === 'sheet') {
+    return (
+      <div className={bookCard({ variant }).base()}>
+        <BookCardContent book={book} variant={variant} />
 
-        <div className="flex flex-col overflow-hidden">
-          <Heading className={bookCard({ variant }).heading()}>
-            {book.name}
-          </Heading>
-
-          <Text className={bookCard({ variant }).author()}>{book.author}</Text>
-
-          <Stars
-            rating={book.rating}
-            size={variant === 'sheet' ? 'md' : 'sm'}
-            className="mt-auto"
-          />
-
-          {variant === 'sheet' && (
-            <Text size="sm" color="gray400" className="mt-2">
-              {book.numberOfRatings}{' '}
-              {book.numberOfRatings > 1 ? 'Avaliações' : 'Avaliação'}
-            </Text>
-          )}
-        </div>
-      </div>
-
-      {variant === 'sheet' && (
         <div className="flex w-full flex-col gap-8 border-t border-gray-600 pt-6 sm:flex-row">
           <div className="flex items-center gap-4 sm:w-1/2">
             <BookmarkSimple size={24} className="text-green-100" />
@@ -108,7 +74,18 @@ export function BookCard({ book, variant }: BookCardProps) {
             </div>
           </div>
         </div>
-      )}
+      </div>
+    )
+  }
+
+  return (
+    <Link
+      scroll={false}
+      href={`/explore?bookId=${book.id}`}
+      title={`Ver Livro ${book.name}`}
+      className={bookCard({ variant }).base()}
+    >
+      <BookCardContent book={book} variant={variant} />
     </Link>
   )
 }

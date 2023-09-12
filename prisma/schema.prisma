@@ -49,6 +49,8 @@ model User {
   email         String?   @unique
   emailVerified DateTime? @map("email_verified")
   avatar_url    String?
+  created_at    DateTime  @default(now())
+  updated_at    DateTime  @updatedAt
 
   accounts Account[]
   sessions Session[]
@@ -65,6 +67,7 @@ model Book {
   cover_url   String
   total_pages Int
   created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
 
   categories CategoriesOnBooks[]
   ratings    Rating[]
@@ -89,8 +92,6 @@ model CategoriesOnBooks {
   category Category @relation(fields: [category_id], references: [id])
 
   @@id([book_id, category_id])
-  @@index([book_id])
-  @@index([category_id])
   @@map("categories_on_books")
 }
 
@@ -101,11 +102,11 @@ model Rating {
   rate        Int
   description String   @db.VarChar(500)
   created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
 
   book Book @relation(fields: [book_id], references: [id])
   user User @relation(fields: [user_id], references: [id])
 
-  @@index([book_id])
-  @@index([user_id])
+  @@index([user_id, book_id])
   @@map("ratings")
 }

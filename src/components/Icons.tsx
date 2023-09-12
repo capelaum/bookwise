@@ -6,6 +6,7 @@ export {
   BookmarkSimple,
   CaretRight,
   ChartLineUp,
+  Check,
   MagnifyingGlass,
   RocketLaunch,
   Star,

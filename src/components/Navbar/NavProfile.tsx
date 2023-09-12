@@ -53,7 +53,7 @@ export function NavProfile({ session }: NavProfileProps) {
         <AvatarProfile
           size="sm"
           name={session?.user.name ?? ''}
-          avatar_url={session?.user.avatar_url ?? null}
+          avatarUrl={session?.user.avatar_url ?? null}
           className="hidden md:block"
         />
 

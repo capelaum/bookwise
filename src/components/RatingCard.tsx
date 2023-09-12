@@ -10,17 +10,17 @@ import { Text } from './ui/Text'
 
 const ratingCard = tv({
   slots: {
-    base: 'h-full w-full rounded-lg border-2 border-gray-700 bg-gray-700 p-6 hover:border-gray-600',
+    base: 'h-full w-full rounded-lg bg-gray-700 p-6',
     profile:
       'mb-5 flex flex-col justify-between gap-5 xs:mb-8 xs:flex-row xs:items-start',
-    profileUser: 'flex gap-4',
+    profileUser: 'flex items-center gap-4',
     profileUserDetails: 'flex flex-col items-start',
     description: 'text-sm text-gray-300'
   },
   variants: {
     variant: {
       home: {
-        base: 'md:h-72',
+        base: 'border-2 border-gray-700 hover:border-gray-600 md:h-72',
         profile: 'mb-3 items-center gap-6 xs:gap-3',
         profileUser: 'flex-col items-center gap-2 xs:flex-row xs:gap-4',
         profileUserDetails: 'items-center xs:items-start',
@@ -45,7 +45,7 @@ export function RatingCard({ rating, variant }: RatingCardProps) {
         <div className={ratingCard({ variant }).profileUser()}>
           <AvatarProfile
             name={rating.user.name}
-            avatar_url={rating.user.avatarUrl}
+            avatarUrl={rating.user.avatarUrl}
           />
 
           <div className={ratingCard({ variant }).profileUserDetails()}>

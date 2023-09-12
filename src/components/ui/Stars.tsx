@@ -6,7 +6,7 @@ const stars = tv({
   variants: {
     variant: {
       default: 'text-purple-100',
-      skeleton: 'text-gray-500 animate-pulse'
+      skeleton: 'animate-pulse text-gray-500'
     }
   },
   defaultVariants: {

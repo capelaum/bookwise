@@ -4,7 +4,7 @@ import { ReactNode } from 'react'
 import { VariantProps, tv } from 'tailwind-variants'
 
 const textLink = tv({
-  base: 'px-2 py-1 flex gap-2 items-center justify-center rounded-md font-semibold',
+  base: 'flex items-center justify-center gap-2 rounded-md px-2 py-1 font-semibold',
   variants: {
     variant: {
       purple: 'text-purple-100 hover:bg-purple-100/5',

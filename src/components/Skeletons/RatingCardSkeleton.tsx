@@ -10,7 +10,7 @@ const ratingCardSkeleton = tv({
     profile:
       'mb-5 flex flex-col justify-between gap-5 xs:mb-8 xs:flex-row xs:items-start',
     profileUser: 'flex gap-4',
-    profileUserDetails: 'flex flex-col gap-2 items-start',
+    profileUserDetails: 'flex flex-col items-start gap-2',
     description: 'text-sm text-gray-300'
   },
   variants: {

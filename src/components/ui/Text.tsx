@@ -4,7 +4,7 @@ import { Slot } from '@radix-ui/react-slot'
 import { VariantProps, tv } from 'tailwind-variants'
 
 const text = tv({
-  base: 'text-gray-100 leading-tall font-normal',
+  base: 'font-normal leading-tall text-gray-100',
   variants: {
     size: {
       sm: 'text-sm',

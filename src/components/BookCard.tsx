@@ -11,10 +11,10 @@ import { Text } from './ui/Text'
 
 const bookCard = tv({
   slots: {
-    base: 'w-full flex flex-col gap-5 xs:gap-10 rounded-lg border-2 border-gray-700 bg-gray-700 px-5 py-4 hover:border-gray-600 transition-all duration-200 ease-in-out text-left aria-controls="radix-:R4racq:',
+    base: 'aria-controls="radix-:R4racq: flex w-full flex-col gap-5 rounded-lg border-2 border-gray-700 bg-gray-700 px-5 py-4 text-left transition-all duration-200 ease-in-out hover:border-gray-600 xs:gap-10',
     book: 'flex gap-5 ',
     image: 'rounded-[4px] object-cover',
-    heading: 'text-base line-clamp-2',
+    heading: 'line-clamp-2 text-base',
     author: 'text-sm text-gray-400'
   },
   variants: {
@@ -26,11 +26,11 @@ const bookCard = tv({
         image: 'h-[94px] w-[64px]'
       },
       sheet: {
-        base: 'rounded-xl px-5 py-4 xs:px-8 xs:py-6 hover:border-gray-700',
+        base: 'rounded-xl px-5 py-4 hover:border-gray-700 xs:px-8 xs:py-6',
         book: 'gap-5 xs:gap-8',
-        image: 'h-[152px] w-[108px] xs:h-[242px] xs:w-[172px] rounded-xl',
+        image: 'h-[152px] w-[108px] rounded-xl xs:h-[242px] xs:w-[172px]',
         heading: 'text-lg',
-        author: 'text-base text-gray-300 mt-2'
+        author: 'mt-2 text-base text-gray-300'
       }
     }
   },

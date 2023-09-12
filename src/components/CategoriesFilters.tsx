@@ -1,5 +1,4 @@
-import { api } from '@/lib/api'
-import { Category } from '@/types/app'
+import { getCategories } from '@/modules/categories/api'
 import { useQuery } from '@tanstack/react-query'
 import { CategoryTagSkeleton } from './Skeletons/CategoryTagSkeleton'
 import { Tag } from './ui/Tag'
@@ -13,10 +12,9 @@ export function CategoriesFilters({
   categoryId,
   setCategoryId
 }: CategoriesFiltersProps) {
-  const { isLoading, data: categories } = useQuery(['categories'], async () => {
-    const { data: categories } = await api('/api/categories')
-
-    return categories as Category[]
+  const { isLoading, data: categories } = useQuery({
+    queryKey: ['categories'],
+    queryFn: getCategories
   })
 
   return (
@@ -29,7 +27,7 @@ export function CategoriesFilters({
             key={category.id}
             text={category.name}
             active={category.id === categoryId}
-            onClick={async () => setCategoryId(category.id)}
+            onClick={() => setCategoryId(category.id)}
           />
         ))
       )}

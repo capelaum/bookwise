@@ -10,6 +10,11 @@ export type Book = {
   ratings?: Rating[]
 }
 
+export type BookFilters = {
+  categoryId: string
+  search: string
+}
+
 export type Rating = {
   id: string
   description: string

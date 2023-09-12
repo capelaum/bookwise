@@ -2,9 +2,7 @@
 
 import { Binoculars, MagnifyingGlass } from '@/components/Icons'
 import { useDebounce } from '@/hooks/useDebounce'
-import { api } from '@/lib/api'
-import { getBook } from '@/modules/books/api'
-import { Book } from '@/types/app'
+import { getBook, getBooks } from '@/modules/books/api'
 import { useQuery } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -35,16 +33,14 @@ export function BooksList({ bookId }: BooksListProps) {
     }
   }, [bookId])
 
-  const { isLoading: isFetchingBooks, data: books } = useQuery(
-    ['books', categoryId, debouncedSearch],
-    async () => {
-      const { data: books } = await api(
-        `/api/books?categoryId=${categoryId}&search=${debouncedSearch}`
-      )
-
-      return books as Book[]
-    }
-  )
+  const { isLoading: isFetchingBooks, data: books } = useQuery({
+    queryKey: ['books', categoryId, debouncedSearch],
+    queryFn: () =>
+      getBooks({
+        categoryId,
+        search: debouncedSearch
+      })
+  })
 
   const { isLoading: isFetchingBook, data: book } = useQuery({
     queryKey: [bookId],

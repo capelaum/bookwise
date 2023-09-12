@@ -1,15 +1,17 @@
-import { Book } from '@/types/app'
+import { Book, BookFilters } from '@/types/app'
 
-export async function getBooks(): Promise<{ books: Book[] }> {
-  const res = await fetch('http://localhost:3000/api/books')
+export async function getBooks(bookFilters: BookFilters): Promise<Book[]> {
+  const urlSearchParams = new URLSearchParams(bookFilters)
+
+  const res = await fetch(`http://localhost:3000/api/books?${urlSearchParams}`)
 
   if (!res.ok) {
-    throw new Error('Failed to fetch  books')
+    throw new Error('Failed to fetch books')
   }
 
   const books = await res.json()
 
-  return { books }
+  return books
 }
 
 export async function getPopularBooks(): Promise<{ popularBooks: Book[] }> {

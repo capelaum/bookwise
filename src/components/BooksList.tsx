@@ -1,7 +1,7 @@
 'use client'
 
 import { Binoculars, MagnifyingGlass } from '@/components/Icons'
-import { useDebounce } from '@/hooks/useDebounce'
+import { useDebounce } from '@/hooks/use-debounce'
 import { getBook, getBooks } from '@/modules/books/api'
 import { useQuery } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'

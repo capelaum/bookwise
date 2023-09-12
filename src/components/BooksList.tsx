@@ -1,15 +1,13 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
-
 import { Binoculars, MagnifyingGlass } from '@/components/Icons'
 import { useDebounce } from '@/hooks/useDebounce'
 import { api } from '@/lib/api'
 import { getBook } from '@/modules/books/api'
 import { Book } from '@/types/app'
 import { useQuery } from '@tanstack/react-query'
-
+import { useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
 import { BookCard } from './BookCard'
 import { BookSheet } from './BookSheet'
 import { CategoriesFilters } from './CategoriesFilters'

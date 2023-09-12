@@ -1,7 +1,6 @@
 import { api } from '@/lib/api'
 import { Category } from '@/types/app'
 import { useQuery } from '@tanstack/react-query'
-
 import { CategoryTagSkeleton } from './Skeletons/CategoryTagSkeleton'
 import { Tag } from './ui/Tag'
 

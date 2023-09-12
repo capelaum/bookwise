@@ -1,13 +1,14 @@
 {
   "typescript.tsdk": "node_modules/typescript/lib",
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": true,
+    "source.organizeImports": true,
+    "source.addMissingImports": true,
+    "source.removeUnusedImports": true
   },
-  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
-  "[typescript]": {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
-  },
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
   }
 }

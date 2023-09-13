@@ -20,6 +20,7 @@ interface BooksListProps {
 }
 
 export function BooksList({ bookId }: BooksListProps) {
+  const [isCreateRatingFormOpen, setIsCreateRatingFormOpen] = useState(false)
   const [isSheetOpen, setIsSheetOpen] = useState(false)
   const [categoryId, setCategoryId] = useState<string>('all')
   const [search, setSearch] = useState('')
@@ -57,6 +58,7 @@ export function BooksList({ bookId }: BooksListProps) {
       open={isSheetOpen}
       onOpenChange={() => {
         toggleSheetOpen()
+        setIsCreateRatingFormOpen(false)
         router.replace('/explore', {
           scroll: false
         })
@@ -87,7 +89,12 @@ export function BooksList({ bookId }: BooksListProps) {
         </Text>
       )}
 
-      <BookSheet book={book} isFetchingBook={isFetchingBook} />
+      <BookSheet
+        book={book}
+        isFetchingBook={isFetchingBook}
+        setIsCreateRatingFormOpen={setIsCreateRatingFormOpen}
+        isCreateRatingFormOpen={isCreateRatingFormOpen}
+      />
 
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
         {isFetchingBooks ? (

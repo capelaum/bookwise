@@ -18,10 +18,16 @@ import { Textarea } from './ui/Textarea'
 interface BookSheetProps {
   book?: Book
   isFetchingBook: boolean
+  isCreateRatingFormOpen: boolean
+  setIsCreateRatingFormOpen: (isCreateRatingFormOpen: boolean) => void
 }
 
-export function BookSheet({ book, isFetchingBook }: BookSheetProps) {
-  const [isCreateRatingFormOpen, setIsCreateRatingFormOpen] = useState(false)
+export function BookSheet({
+  book,
+  isFetchingBook,
+  isCreateRatingFormOpen,
+  setIsCreateRatingFormOpen
+}: BookSheetProps) {
   const [rate, setRate] = useState(0)
   const [hover, setHover] = useState(0)
 

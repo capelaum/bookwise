@@ -8,20 +8,14 @@
     margin: 0;
     padding: 0;
   }
-
-  body {
-    font-family: var(--font-nunito), sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
 }
 
 @layer components {
   .sign-in-button {
-    @apply flex items-center gap-5 rounded-lg bg-gray-600 px-6 py-5 text-left text-sm sm:text-lg font-bold leading-tall text-gray-200 transition-all duration-300 ease-in-out hover:bg-gray-500;
+    @apply flex items-center gap-5 rounded-lg bg-gray-600 px-6 py-5 text-left text-sm font-bold leading-tall text-gray-200 transition-all duration-300 ease-in-out hover:bg-gray-500 sm:text-lg;
   }
 
   .navbar-profile {
-    @apply ml-6 md:ml-0 mt-auto flex items-center justify-center gap-3 rounded-md p-2 transition-all duration-200 ease-in-out hover:bg-gray-200/5;
+    @apply ml-6 mt-auto flex items-center justify-center gap-3 rounded-md p-2 transition-all duration-200 ease-in-out hover:bg-gray-200/5 md:ml-0;
   }
 }

@@ -16,7 +16,7 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        nunito: ['var(--font-nunito)']
+        nunito: ['var(--font-nunito)', 'sans-serif']
       },
       colors: {
         gray: {

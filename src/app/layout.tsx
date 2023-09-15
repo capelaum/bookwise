@@ -25,7 +25,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <head>
         <Favicon />
       </head>
-      <body className="bg-gray-800 text-gray-100">
+      <body className="bg-gray-800 font-nunito text-gray-100 antialiased">
         <Toaster />
         <Providers>{children}</Providers>
       </body>

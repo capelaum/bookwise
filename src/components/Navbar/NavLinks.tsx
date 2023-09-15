@@ -1,13 +1,11 @@
 'use client'
 
+import { Binoculars, ChartLineUp, User } from '@/components/Icons'
 import { type Session } from 'next-auth'
 import Link, { LinkProps } from 'next/link'
 import { usePathname } from 'next/navigation'
 import { ReactNode, useMemo } from 'react'
-
-import { Binoculars, ChartLineUp, User } from 'phosphor-react'
 import { VariantProps, tv } from 'tailwind-variants'
-
 import { Text } from '../ui/Text'
 
 const NAV_ITEMS = [

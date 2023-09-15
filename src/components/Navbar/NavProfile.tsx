@@ -1,13 +1,11 @@
 'use client'
 
+import { SignIn, SignOut } from '@/components/Icons'
+import { useToast } from '@/hooks/use-toast'
 import { Session } from 'next-auth'
 import { signOut } from 'next-auth/react'
 import Link from 'next/link'
 import { useState } from 'react'
-
-import { useToast } from '@/hooks/use-toast'
-import { SignIn, SignOut } from 'phosphor-react'
-
 import { AvatarProfile } from '../AvatarProfile'
 import { Text } from '../ui/Text'
 

@@ -1,6 +1,5 @@
-import { Metadata } from 'next'
-
 import { BooksList } from '@/components/BooksList'
+import { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'BookWise | Explorar'

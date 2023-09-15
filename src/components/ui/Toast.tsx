@@ -1,13 +1,12 @@
+import { X } from '@/components/Icons'
+import { cn } from '@/lib/utils'
+import * as ToastPrimitives from '@radix-ui/react-toast'
 import {
   ComponentPropsWithoutRef,
   ElementRef,
   ReactElement,
   forwardRef
 } from 'react'
-
-import { cn } from '@/lib/utils'
-import * as ToastPrimitives from '@radix-ui/react-toast'
-import { X } from 'phosphor-react'
 import { VariantProps, tv } from 'tailwind-variants'
 
 const ToastProvider = ToastPrimitives.Provider

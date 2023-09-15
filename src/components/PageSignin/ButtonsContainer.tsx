@@ -5,8 +5,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 
+import { RocketLaunch } from '@/components/Icons'
 import { useToast } from '@/hooks/use-toast'
-import { RocketLaunch } from 'phosphor-react'
 
 import { GithubIcon, GoogleIcon } from '@/assets'
 

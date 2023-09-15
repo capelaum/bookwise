@@ -9,6 +9,9 @@ export {
   Check,
   MagnifyingGlass,
   RocketLaunch,
+  SignIn,
+  SignOut,
   Star,
+  User,
   X
-} from 'phosphor-react'
+} from '@phosphor-icons/react'

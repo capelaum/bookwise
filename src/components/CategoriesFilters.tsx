@@ -27,7 +27,14 @@ export function CategoriesFilters({
             key={category.id}
             text={category.name}
             active={category.id === categoryId}
-            onClick={() => setCategoryId(category.id)}
+            onClick={() => {
+              if (categoryId !== 'all' && category.id === categoryId) {
+                setCategoryId('all')
+                return
+              }
+
+              setCategoryId(category.id)
+            }}
           />
         ))
       )}

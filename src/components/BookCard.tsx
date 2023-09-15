@@ -11,7 +11,7 @@ import { Text } from './ui/Text'
 
 const bookCard = tv({
   slots: {
-    base: 'aria-controls="radix-:R4racq: flex w-full flex-col gap-5 rounded-lg border-2 border-gray-700 bg-gray-700 px-5 py-4 text-left transition-all duration-200 ease-in-out hover:border-gray-600 xs:gap-10',
+    base: 'flex w-full flex-col gap-5 rounded-lg border-2 border-gray-700 bg-gray-700 px-5 py-4 text-left transition-all duration-200 ease-in-out hover:border-gray-600 xs:gap-10',
     book: 'flex gap-5 ',
     image: 'rounded-[4px] object-cover',
     heading: 'line-clamp-2 text-base',

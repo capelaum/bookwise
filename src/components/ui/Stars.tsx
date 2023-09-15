@@ -1,4 +1,5 @@
 import { Star } from '@/components/Icons'
+import { cn } from '@/lib/utils'
 import { VariantProps, tv } from 'tailwind-variants'
 
 const stars = tv({
@@ -8,6 +9,10 @@ const stars = tv({
       default: 'text-purple-100',
       skeleton: 'animate-pulse text-gray-500',
       button: 'gap-0 text-purple-100'
+    },
+    error: {
+      true: 'text-red-400',
+      false: 'text-purple-100'
     }
   },
   defaultVariants: {
@@ -26,7 +31,7 @@ interface StarsProps extends VariantProps<typeof stars> {
   rating: number
   size?: keyof typeof sizes
   className?: string
-  setRating?: (rating: number) => void
+  handleSetRating?: (rating: number) => void
   hover?: number
   setHover?: (rating: number) => void
 }
@@ -35,20 +40,24 @@ export function Stars({
   rating,
   size = 'md',
   variant,
+  error,
   className,
-  setRating,
+  handleSetRating,
   hover,
   setHover,
   ...props
 }: StarsProps) {
   function renderStar(starIndex: number) {
-    if (variant === 'button' && setRating && setHover) {
+    if (variant === 'button' && handleSetRating && setHover) {
       return (
         <button
           type="button"
-          className="px-px hover:cursor-pointer"
+          className={cn(
+            'px-px hover:cursor-pointer',
+            error && hover && hover > 0 && 'text-purple-100'
+          )}
           key={starIndex}
-          onClick={() => setRating(starIndex)}
+          onClick={() => handleSetRating(starIndex)}
           onMouseEnter={() => setHover(starIndex)}
           onMouseLeave={() => setHover(rating)}
         >
@@ -72,7 +81,7 @@ export function Stars({
   }
 
   return (
-    <div className={stars({ variant, className })} {...props}>
+    <div className={stars({ error, variant, className })} {...props}>
       {[1, 2, 3, 4, 5].map((starIndex) => renderStar(starIndex))}
     </div>
   )

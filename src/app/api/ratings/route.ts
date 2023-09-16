@@ -66,6 +66,24 @@ export async function POST(req: Request) {
     description: body.description
   })
 
+  const ratingExists = await db.rating.findFirst({
+    where: {
+      user_id: session.user.id,
+      book_id: bookId
+    }
+  })
+
+  if (ratingExists) {
+    return NextResponse.json(
+      {
+        message: 'Rating of this book was already made by this user '
+      },
+      {
+        status: 400
+      }
+    )
+  }
+
   const createdRating = await db.rating.create({
     data: {
       user_id: session.user.id,

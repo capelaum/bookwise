@@ -2,6 +2,7 @@
 
 import { SignIn, SignOut } from '@/components/Icons'
 import { useToast } from '@/hooks/use-toast'
+import { getUserFirstName } from '@/lib/utils'
 import { Session } from 'next-auth'
 import { signOut } from 'next-auth/react'
 import Link from 'next/link'
@@ -57,7 +58,7 @@ export function NavProfile({ session }: NavProfileProps) {
 
         <Text weight="bold" size="sm" asChild>
           <span className="hidden max-w-[100px] overflow-hidden text-ellipsis whitespace-nowrap md:block">
-            {session.user.name}
+            {getUserFirstName(session.user.name)}
           </span>
         </Text>
 

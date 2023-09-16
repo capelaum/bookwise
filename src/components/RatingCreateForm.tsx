@@ -1,9 +1,13 @@
-import { Check, X } from '@/components/Icons'
+'use client'
+
+import { Check, CheckCircle, X } from '@/components/Icons'
+import { toast } from '@/hooks/use-toast'
+import { useRatingMutations } from '@/modules/ratings/hooks'
+import { RatingFormSchema, ratingFormSchema } from '@/modules/ratings/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Session } from 'next-auth'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { z } from 'zod'
 import { AvatarProfile } from './AvatarProfile'
 import { ButtonIcon } from './ui/ButtonIcon'
 import { Form, FormControl, FormField, FormItem, FormMessage } from './ui/Form'
@@ -11,38 +15,20 @@ import { Stars } from './ui/Stars'
 import { Text } from './ui/Text'
 import { Textarea } from './ui/Textarea'
 
-const ratingFormSchema = z.object({
-  description: z
-    .string({
-      required_error: 'Avaliação é obrigatória',
-      invalid_type_error: 'Avaliação deve ser um texto'
-    })
-    .trim()
-    .min(2, 'Avaliação deve ter no mínimo 2 caracteres')
-    .max(1000, 'Avaliação deve ter no máximo 1000 caracteres'),
-  rate: z
-    .number({
-      required_error: 'Nota é obrigatória',
-      invalid_type_error: 'Nota deve ser um número'
-    })
-    .positive('Nota deve ser um número positivo')
-    .int('Nota deve ser um número inteiro')
-    .gte(1, 'Nota deve ser no mínimo 1')
-    .lte(5, 'Nota deve ser no máximo 5')
-})
-
-export type RatingFormSchema = z.infer<typeof ratingFormSchema>
-
 interface RatingCreateFormProps {
+  bookId: string
   setIsCreateRatingFormOpen: (isCreateRatingFormOpen: boolean) => void
   user: Session['user']
 }
 
 export function RatingCreateForm({
+  bookId,
   setIsCreateRatingFormOpen,
   user
 }: RatingCreateFormProps) {
   const [hover, setHover] = useState(0)
+
+  const { createRatingMutation } = useRatingMutations()
 
   const form = useForm<RatingFormSchema>({
     resolver: zodResolver(ratingFormSchema),
@@ -66,8 +52,35 @@ export function RatingCreateForm({
     clearErrors('rate')
   }
 
-  function handleCreateRating(data: RatingFormSchema) {
-    console.log('💥 ~ data:', data)
+  async function handleCreateRating(data: RatingFormSchema) {
+    try {
+      const { rate, description } = data
+
+      await createRatingMutation.mutateAsync({
+        rate,
+        description,
+        bookId
+      })
+
+      toast({
+        title: 'Avaliação feita!',
+        description: (
+          <div className="mt-2 flex items-center gap-2 ">
+            <CheckCircle className="h-4 w-4 text-green-500" />
+            <span className="leading-none">Tudo pronto</span>
+          </div>
+        )
+      })
+
+      reset()
+      handleCloseCreateRatingForm()
+    } catch (error) {
+      toast({
+        title: '❌ Ocorreu um erro ao criar a avaliação',
+        description: 'Por favor tente novamente mais tarde',
+        variant: 'destructive'
+      })
+    }
   }
 
   return (
@@ -128,5 +141,3 @@ export function RatingCreateForm({
     </Form>
   )
 }
-
-export default RatingCreateForm

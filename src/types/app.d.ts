@@ -19,6 +19,7 @@ export type Rating = {
   id: string
   description: string
   rate: number
+  updatedAt: string
   user: {
     id: string
     name: string

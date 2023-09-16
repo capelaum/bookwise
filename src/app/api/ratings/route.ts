@@ -1,6 +1,7 @@
-import { NextResponse } from 'next/server'
-
+import { getAuthSession } from '@/lib/auth'
 import { db } from '@/lib/db'
+import { createRatingRequestBodySchema } from '@/modules/ratings/schemas'
+import { NextResponse } from 'next/server'
 
 export async function GET(req: Request) {
   try {
@@ -41,4 +42,43 @@ export async function GET(req: Request) {
       status: 500
     })
   }
+}
+
+export async function POST(req: Request) {
+  const session = await getAuthSession()
+
+  if (!session || !session.user) {
+    return NextResponse.json(
+      {
+        message: 'Unauthorized'
+      },
+      {
+        status: 401
+      }
+    )
+  }
+
+  const body = await req.json()
+
+  const { rate, description, bookId } = createRatingRequestBodySchema.parse({
+    bookId: body.bookId,
+    rate: body.rate,
+    description: body.description
+  })
+
+  const createdRating = await db.rating.create({
+    data: {
+      user_id: session.user.id,
+      book_id: bookId,
+      rate,
+      description
+    }
+  })
+
+  return NextResponse.json(
+    { createdRating },
+    {
+      status: 201
+    }
+  )
 }

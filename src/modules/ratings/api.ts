@@ -1,13 +1,16 @@
+import { api } from '@/lib/api'
 import { Rating } from '@/types/app'
 
-export async function getRatings(): Promise<{ ratings: Rating[] }> {
-  const res = await fetch('http://localhost:3000/api/ratings')
+export async function getRatings(): Promise<Rating[]> {
+  const response = await api('/ratings')
+  console.log('💥 ~ response:', response)
 
-  if (!res.ok) {
+  if (response.status !== 200) {
     throw new Error('Failed to fetch popular books')
   }
 
-  const ratings = await res.json()
+  const ratings = response.data
+  console.log('💥 ~ ratings:', ratings)
 
-  return { ratings }
+  return ratings
 }

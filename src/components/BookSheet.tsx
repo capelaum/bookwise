@@ -2,7 +2,7 @@ import type { Book } from '@/types/app'
 import { useSession } from 'next-auth/react'
 import { BookCard } from './BookCard'
 import { RatingCard } from './RatingCard'
-import RatingCreateForm from './RatingCreateForm'
+import { RatingCreateForm } from './RatingCreateForm'
 import { BookCardSkeleton } from './Skeletons/BookCardSkeleton'
 import { RatingCardSkeleton } from './Skeletons/RatingCardSkeleton'
 import { ButtonLink } from './ui/ButtonLink'
@@ -57,8 +57,9 @@ export function BookSheet({
             </div>
 
             <div className="flex flex-col gap-3 pb-4">
-              {isCreateRatingFormOpen && session?.data?.user && (
+              {isCreateRatingFormOpen && session?.data?.user && book && (
                 <RatingCreateForm
+                  bookId={book.id}
                   user={session?.data?.user}
                   setIsCreateRatingFormOpen={setIsCreateRatingFormOpen}
                 />

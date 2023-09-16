@@ -1,5 +1,7 @@
 import { SimpleRating } from '@/types/app'
 import clsx, { ClassValue } from 'clsx'
+import { format } from 'date-fns'
+import { utcToZonedTime } from 'date-fns-tz'
 import { twMerge } from 'tailwind-merge'
 
 export function cn(...inputs: ClassValue[]) {
@@ -41,4 +43,13 @@ export function getAverageRating(ratings: SimpleRating[]) {
   const averageRating = Math.round(sumRatings / ratings.length)
 
   return averageRating
+}
+
+export function formatDatetimeToBrazilianFormat(dbDatetime: Date): string {
+  const brazilianTimezone = 'America/Sao_Paulo'
+  const brazilianDatetime = utcToZonedTime(dbDatetime, brazilianTimezone)
+
+  const brazilianDatetimeStr = format(brazilianDatetime, 'dd/MM/yy - HH:mm')
+
+  return brazilianDatetimeStr
 }

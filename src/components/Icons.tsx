@@ -7,6 +7,7 @@ export {
   CaretRight,
   ChartLineUp,
   Check,
+  CheckCircle,
   MagnifyingGlass,
   RocketLaunch,
   SignIn,

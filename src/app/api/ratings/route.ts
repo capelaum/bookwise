@@ -93,6 +93,8 @@ export async function POST(req: Request) {
     }
   })
 
+  // await new Promise((resolve) => setTimeout(resolve, 5000))
+
   return NextResponse.json(
     { createdRating },
     {

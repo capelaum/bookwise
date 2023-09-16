@@ -1,6 +1,6 @@
 'use client'
 
-import { Check, CheckCircle, X } from '@/components/Icons'
+import { Check, CheckCircle, CircleNotch, X } from '@/components/Icons'
 import { toast } from '@/hooks/use-toast'
 import { useRatingMutations } from '@/modules/ratings/hooks'
 import { RatingFormSchema, ratingFormSchema } from '@/modules/ratings/schemas'
@@ -133,8 +133,20 @@ export function RatingCreateForm({
             <X size={24} weight="regular" className="text-purple-100" />
           </ButtonIcon>
 
-          <ButtonIcon title="Avaliar" type="submit">
-            <Check size={24} weight="regular" className="text-green-100" />
+          <ButtonIcon
+            title="Avaliar"
+            type="submit"
+            disabled={formState.isSubmitting}
+          >
+            {formState.isSubmitting ? (
+              <CircleNotch
+                size={24}
+                weight="bold"
+                className="animate-spin text-green-100"
+              />
+            ) : (
+              <Check size={24} weight="regular" className="text-green-100" />
+            )}
           </ButtonIcon>
         </div>
       </form>

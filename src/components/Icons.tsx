@@ -8,6 +8,7 @@ export {
   ChartLineUp,
   Check,
   CheckCircle,
+  CircleNotch,
   MagnifyingGlass,
   RocketLaunch,
   SignIn,

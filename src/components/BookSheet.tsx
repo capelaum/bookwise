@@ -31,6 +31,10 @@ export function BookSheet({
     }
   }
 
+  const authUserHasRatingOnThisBook = book?.ratings?.find(
+    (rating) => rating.user.id === session.data?.user.id
+  )
+
   return (
     <SheetContent className="w-full max-w-[660px] px-3 pb-0 pr-2 pt-16 xs:px-12 xs:pr-2">
       <ScrollArea className="h-full w-full">
@@ -46,7 +50,7 @@ export function BookSheet({
                 Avaliações
               </Text>
 
-              {!isCreateRatingFormOpen && (
+              {!isCreateRatingFormOpen && !authUserHasRatingOnThisBook && (
                 <ButtonLink
                   title="Avaliar"
                   onClick={handleOpenCreateRatingForm}

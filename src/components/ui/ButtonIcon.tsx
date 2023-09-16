@@ -1,6 +1,6 @@
-import { ButtonHTMLAttributes, ReactNode } from 'react'
+import { ComponentProps, ReactNode } from 'react'
 
-interface ButtonIconProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonIconProps extends ComponentProps<'button'> {
   children: ReactNode
 }
 

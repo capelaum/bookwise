@@ -1,19 +1,19 @@
 'use client'
 
+import { GithubIcon, GoogleIcon } from '@/assets'
+import { RocketLaunch } from '@/components/Icons'
+import { toast } from '@/hooks/use-toast'
 import { signIn } from 'next-auth/react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 
-import { RocketLaunch } from '@/components/Icons'
-import { useToast } from '@/hooks/use-toast'
+interface SignInButtonsProps {
+  isDialog?: boolean
+}
 
-import { GithubIcon, GoogleIcon } from '@/assets'
-
-export function ButtonsContainer() {
-  const [isLoading, setIsLoading] = useState<boolean>(false)
-
-  const { toast } = useToast()
+export function SignInButtons({ isDialog = false }: SignInButtonsProps) {
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleLogin = async (type: 'github' | 'google') => {
     setIsLoading(true)
@@ -61,10 +61,16 @@ export function ButtonsContainer() {
         Entrar com Github
       </button>
 
-      <Link href="/home" className="sign-in-button">
-        <RocketLaunch size={32} weight="regular" className="text-purple-100" />
-        <span>Entrar como visitante</span>
-      </Link>
+      {!isDialog && (
+        <Link href="/home" className="sign-in-button">
+          <RocketLaunch
+            size={32}
+            weight="regular"
+            className="text-purple-100"
+          />
+          <span>Entrar como visitante</span>
+        </Link>
+      )}
     </div>
   )
 }

@@ -29,6 +29,10 @@ export function BookSheet({
     if (session.status === 'authenticated') {
       setIsCreateRatingFormOpen(true)
     }
+
+    if (session.status !== 'authenticated') {
+      console.log('Open Dialog')
+    }
   }
 
   const authUserHasRatingOnThisBook = book?.ratings?.find(

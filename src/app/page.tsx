@@ -1,13 +1,11 @@
-import { Metadata } from 'next'
-import Image from 'next/image'
-import { redirect } from 'next/navigation'
-
-import { ButtonsContainer } from '@/components/PageSignin/ButtonsContainer'
+import { Logo } from '@/assets'
+import { SignInButtons } from '@/components/SignInButtons'
 import { Heading } from '@/components/ui/Heading'
 import { Text } from '@/components/ui/Text'
 import { getAuthSession } from '@/lib/auth'
-
-import { Logo } from '@/assets'
+import { Metadata } from 'next'
+import Image from 'next/image'
+import { redirect } from 'next/navigation'
 
 export const metadata: Metadata = {
   title: 'Sign in | BookWise'
@@ -35,7 +33,7 @@ export default async function SignIn() {
             </Text>
           </header>
 
-          <ButtonsContainer />
+          <SignInButtons />
         </section>
       </div>
     </main>
